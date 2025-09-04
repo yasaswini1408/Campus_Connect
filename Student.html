@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Student Sign In</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #eaf3ff;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 28px;
+      border: 1px solid #c2d4f5;
+      border-radius: 10px;
+      background-color: #ffffff;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      width: 360px;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 24px;
+    }
+
+    .title h3 {
+      margin: 0;
+      margin-right: 10px;
+      color: #1f4e79;
+      font-size: 22px;
+    }
+
+    .title img {
+      height: 70px;
+      margin-left: 10px;
+    }
+
+    .input-pair {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 18px;
+    }
+
+    .input-pair label {
+      width: 120px;
+      text-align: right;
+      margin-right: 10px;
+      font-size: 14px;
+      color: #333;
+      font-weight: normal;
+      flex-shrink: 0;
+    }
+
+    .input-pair input {
+      width: calc(100% - 130px);
+      padding: 6px 10px;
+      border: 1px solid #a0b9e0;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      box-sizing: border-box;
+      line-height: 1.2;
+      vertical-align: middle;
+    }
+
+    .input-pair input::placeholder {
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      color: #888;
+    }
+
+    .signin_button {
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 0;
+      font-size: 16px;
+      width: 100%;
+      cursor: pointer;
+      margin-bottom: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .signin_button:hover {
+      background-color: #1e40af;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .links a {
+      font-size: 14px;
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="form-container">  
+    <div class="title">
+      <h3>Student Sign In</h3>
+      <img src="student_logo.png" alt="Student Icon" />
+    </div>
+
+    <form id="studentLoginForm">
+      <div class="input-pair">
+        <label for="regNo">Registration No.:</label>
+        <input type="text" id="regNo" placeholder="Enter your Registration No." required />
+      </div>
+
+      <div class="input-pair">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your Password" required />
+      </div>
+
+      <button type="submit" class="signin_button">Sign In</button>
+    </form>
+
+    <div class="links">
+      <a href="contact-admin.html">Forgot Password?</a>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('studentLoginForm');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      if (form.checkValidity()) {
+        alert('Sign-in successful!');
+        form.reset();
+      } else {
+        form.reportValidity();
+      }
+    });
+  </script>
+</body>
+</html>
