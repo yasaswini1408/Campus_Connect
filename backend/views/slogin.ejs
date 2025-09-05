@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Sign In</title>
+  <link rel="icon" href="/images/icon.png">
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      font-family: Arial, sans-serif;
+      background-color: #7287a2;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow:hidden;
+    }
+
+    #logo{
+      position:absolute;
+      left: 1rem;
+      top: 1rem;
+      background-color: rgb(255,255,255,0.8);
+      border-radius: 0.5rem;
+      height: 4rem;
+      /*width: 100px;*/
+    }
+
+    canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1; 
+    }
+
+    .form-container {
+      display: flex;
+      flex-direction: column;
+      /* align-items: center; */
+      padding: 28px;
+      border: 1px solid #c2d4f5;
+      border-radius: 10px;
+      background-color: #ffffff;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      width: 360px;
+    }
+
+    .title {
+      display: flex;
+      align-items: center;
+      justify-content: left;
+      margin-bottom: 24px;
+    }
+
+    .title h3 {
+      margin: 0;
+      margin-right: 10px;
+      color: #1f4e79;
+      font-size: 22px;
+    }
+
+    .title img {
+      height: 60px;
+      margin-left: 10px;
+    }
+
+    .input-pair {
+      display: flex;
+      align-items: center;
+      width: 100%;
+      margin-bottom: 18px;
+    }
+
+    .input-pair label {
+      width: 120px;
+      text-align: right;
+      margin-right: 10px;
+      font-size: 14px;
+      color: #333;
+      font-weight: normal;
+      flex-shrink: 0;
+    }
+
+    .input-pair input {
+      width: calc(100% - 130px);
+      padding: 6px 10px;
+      border: 1px solid #a0b9e0;
+      border-radius: 4px;
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      box-sizing: border-box;
+      line-height: 1.2;
+      vertical-align: middle;
+    }
+
+    .input-pair input::placeholder {
+      font-size: 14px;
+      font-family: Arial, sans-serif;
+      color: #888;
+    }
+
+    .signin_button {
+      background-color: #2563eb;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      padding: 8px 0;
+      font-size: 16px;
+      width: 100%;
+      cursor: pointer;
+      margin-bottom: 16px;
+      transition: background-color 0.3s;
+    }
+
+    .signin_button:hover {
+      background-color: #1e40af;
+    }
+
+    .links {
+      display: flex;
+      justify-content: center;
+      width: 100%;
+      margin-top: 8px;
+    }
+
+    .links a {
+      font-size: 14px;
+      color: #2563eb;
+      text-decoration: none;
+    }
+
+    .links a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <canvas id="particles"></canvas>
+  <img src="/images/logo-removebg-preview.png" id="logo">
+  <div class="form-container">  
+    <div class="title">
+      <img src="/images/student_logo.png" alt="Student Icon" />
+      <h3>Sign In</h3>
+    </div>
+
+    <form id="studentLoginForm">
+      <div class="input-pair">
+        <label for="regNo">Registration No.:</label>
+        <input type="text" id="regNo" placeholder="Enter your Registration No." required />
+      </div>
+
+      <div class="input-pair">
+        <label for="password">Password:</label>
+        <input type="password" id="password" placeholder="Enter your Password" required />
+      </div>
+
+      <button type="submit" class="signin_button">Sign In</button>
+    </form>
+
+    <div class="links">
+      <a href="contact-admin.html">Forgot Password?</a>
+    </div>
+  </div>
+
+  <script>
+    const form = document.getElementById('studentLoginForm');
+
+    form.addEventListener('submit', function(event) {
+      event.preventDefault();
+
+      if (form.checkValidity()) {
+        alert('Sign-in successful!');
+        form.reset();
+      } else {
+        form.reportValidity();
+      }
+    });
+
+    const canvas = document.getElementById("particles");
+    const ctx = canvas.getContext("2d");
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
+
+    const particlesArray = [];
+    const mouse = {
+      x: null,
+      y: null,
+      radius: 120
+    };
+
+    window.addEventListener("mousemove", (event) => {
+      mouse.x = event.x;
+      mouse.y = event.y;
+    });
+
+    class Particle {
+  constructor(x, y, size) {
+    this.x = x;
+    this.y = y;
+    this.size = size;
+    this.baseX = x;
+    this.baseY = y;
+    this.density = Math.random() * 30 + 1;
+
+    // Add random velocity for natural movement
+    this.vx = (Math.random() - 0.5) * 1; 
+    this.vy = (Math.random() - 0.5) * 1;
+  }
+
+  draw() {
+    ctx.beginPath();
+    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+    ctx.closePath();
+    ctx.fillStyle = "rgba(255, 255, 255, 0.8)";
+    ctx.shadowColor = "#fff";
+    ctx.shadowBlur = 15;
+    ctx.fill();
+  }
+
+  update() {
+    // Move with velocity
+    this.x += this.vx;
+    this.y += this.vy;
+
+    // Bounce on edges
+    if (this.x < 0 || this.x > canvas.width) this.vx *= -1;
+    if (this.y < 0 || this.y > canvas.height) this.vy *= -1;
+
+    // Mouse repulsion
+    let dx = mouse.x - this.x;
+    let dy = mouse.y - this.y;
+    let distance = Math.sqrt(dx * dx + dy * dy);
+
+    if (distance < mouse.radius) {
+      let angle = Math.atan2(dy, dx);
+      let force = (mouse.radius - distance) / mouse.radius;
+      let moveX = force * Math.cos(angle) * this.density;
+      let moveY = force * Math.sin(angle) * this.density;
+
+      this.x -= moveX;
+      this.y -= moveY;
+    }
+
+    this.draw();
+  }
+}
+
+
+    function init() {
+      particlesArray.length = 0;
+      const numberOfParticles = 150;
+      for (let i = 0; i < numberOfParticles; i++) {
+        let x = Math.random() * canvas.width;
+        let y = Math.random() * canvas.height;
+        let size = Math.random() * 3 + 1;
+        particlesArray.push(new Particle(x, y, size));
+      }
+    }
+
+    // Draw faint glowing lines between close particles
+    function connect() {
+    let maxDistance = 100 * 100; // 100px threshold
+    for (let a = 0; a < particlesArray.length; a++) {
+      for (let b = a; b < particlesArray.length; b++) {
+        let dx = particlesArray[a].x - particlesArray[b].x;
+        let dy = particlesArray[a].y - particlesArray[b].y;
+        let distance = dx * dx + dy * dy;
+
+        if (distance < maxDistance) {
+          ctx.beginPath();
+          ctx.strokeStyle = "rgba(255, 255, 255, 0.2)";
+          ctx.lineWidth = 1;
+          ctx.moveTo(particlesArray[a].x, particlesArray[a].y);
+          ctx.lineTo(particlesArray[b].x, particlesArray[b].y);
+          ctx.stroke();
+          ctx.closePath();
+        }
+      }
+    }
+  }
+
+    function animate() {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      for (let i = 0; i < particlesArray.length; i++) {
+        particlesArray[i].update();
+      }
+      connect();
+      requestAnimationFrame(animate);
+    }
+
+    init();
+    animate();
+
+    window.addEventListener("resize", () => {
+      canvas.width = window.innerWidth;
+      canvas.height = window.innerHeight;
+      init();
+    });
+  </script>
+</body>
+</html>
