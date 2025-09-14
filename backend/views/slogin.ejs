@@ -10,7 +10,7 @@
       margin: 0;
       height: 100vh;
       font-family: Arial, sans-serif;
-      background-color: #7287a2;
+      background: linear-gradient(135deg, #7287a2, #2f3e46);
       display: flex;
       justify-content: center;
       align-items: center;
@@ -144,38 +144,35 @@
       <h3>Sign In</h3>
     </div>
 
-    <form id="studentLoginForm">
+    <form id="studentLoginForm" method="post" action="/campus-connect/viit/studentlogin">
       <div class="input-pair">
         <label for="regNo">Registration No.:</label>
-        <input type="text" id="regNo" placeholder="Enter your Registration No." required />
+        <input type="text" id="regNo" name="regNo" placeholder="Enter your Registration No." required />
       </div>
 
       <div class="input-pair">
         <label for="password">Password:</label>
-        <input type="password" id="password" placeholder="Enter your Password" required />
+        <input type="password" id="password" name="password" placeholder="Enter your Password" required />
       </div>
 
       <button type="submit" class="signin_button">Sign In</button>
     </form>
 
     <div class="links">
-      <a href="contact-admin.html">Forgot Password?</a>
+      <a href="/admin.html">Forgot Password?</a>
     </div>
   </div>
 
   <script>
-    const form = document.getElementById('studentLoginForm');
+    //const form = document.getElementById('studentLoginForm');
 
-    form.addEventListener('submit', function(event) {
-      event.preventDefault();
-
-      if (form.checkValidity()) {
-        alert('Sign-in successful!');
-        form.reset();
-      } else {
-        form.reportValidity();
-      }
-    });
+    //form.addEventListener('submit', function(event) {
+      //if (form.checkValidity()) {
+       // form.reset();
+      //} else {
+      //  form.reportValidity();
+     // }
+   // });
 
     const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
