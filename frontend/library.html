@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Library</title>
+  <link rel="icon" href="assets/images/icon.png">
+  <style>
+    body { font-family: Arial, sans-serif; margin: 20px; background: #f4f6f9; }
+    h2 { color: #333; }
+    #searchBar {
+      width: 300px; padding: 8px; border-radius: 6px; border: 1px solid #ccc;
+    }
+    button {
+      padding: 6px 10px; border: none; border-radius: 6px; cursor: pointer;
+      background: #3b1d92; color: white;
+    }
+    .book, .mybook {
+      background: white; margin: 10px 0; padding: 15px; border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    .book h3, .mybook h3 { margin: 0; }
+    small { color: #666; }
+    #results, #myBooks { margin-top: 20px; }
+  </style>
+</head>
+<body>
+
+  <h2>📚 Library</h2>
+
+  <input type="text" id="searchBar" placeholder="Search by book title...">
+  <button onclick="searchBooks()">Search</button>
+
+  <div id="results"></div>
+
+  <h3>My Borrowed Books</h3>
+  <div id="myBooks"></div>
+
+  <script src="assets/js/library.js"></script>
+</body>
+</html>

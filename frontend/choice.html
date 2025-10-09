@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIIT Portal - Enjoy a seamless experience</title>
+  <link rel="icon" href="assets/images/icon.png">
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(to bottom right, #fff9e6, #cce7ff);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* Top Header with Logo */
+    header {
+      width: 100%;
+      background-color: white;
+    }
+
+    /* Separator line below header */
+    .header-line {
+      width: 100%;
+      height: 2px;
+      background: #ccc;
+    }
+
+    /* Navbar */
+    nav {
+      width: 100%;
+      background: #ffffff; /* White navbar */
+      display: flex;
+      justify-content: space-evenly;
+      align-items: center;
+      padding: 6px 0; /* Smaller height */
+      border-bottom: 1px solid #ddd; /* Bottom border */
+    }
+
+    nav a {
+      color: #333; /* Dark gray text */
+      text-decoration: none;
+      font-size: 0.85rem; /* Reduced font size */
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+
+    nav a:hover {
+      color: #0073e6; /* Blue hover effect */
+    }
+
+    /* Main container */
+    .container {
+      flex: 1; /* Push footer to bottom */
+      margin-top: 40px; /* Distance below navbar */
+      display: flex;
+      gap: 50px;
+      justify-content: center;
+      align-items: flex-start;
+      flex-wrap: nowrap;
+      text-align: center;
+    }
+
+    .card {
+      width: 110px;
+      height: 110px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 20px;
+      cursor: pointer;
+      box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 18px rgba(0,0,0,0.3);
+    }
+
+    /* Cool card colors */
+    .teacher {
+      background: #ff7f50; /* Coral */
+    }
+
+    .student {
+      background: #1e90ff; /* Dodger Blue */
+    }
+
+    .card img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: white;
+      padding: 8px;
+    }
+
+    .label {
+      margin-top: 8px;
+      font-size: 1rem;
+      font-weight: bold;
+      color: #333;
+    }
+
+    .login-box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    /* Footer */
+    footer {
+      width: 100%;
+      background: #333;
+      color: white;
+      text-align: center;
+      padding: 10px 0;
+      margin-top: auto; /* Push to bottom */
+    }
+
+    .footer-bottom p {
+      margin: 0;
+      font-size: 0.85rem;
+    }
+
+    #chowder{
+        height: 100px;
+        width: 70%;
+        margin: auto;
+        display: block;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <img src="assets/images/Header.jpg" alt="Vignan's header" id="chowder">
+  </header>
+
+  <!-- Line below header -->
+  <div class="header-line"></div>
+
+  <!-- Navbar -->
+  <nav>
+    <a href="home.html">Home</a>
+    <a href="about.html">About</a>
+    <a href="contact.html">Contact Us</a>
+    <a href="faqs.html">FAQs</a>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="container">
+
+    <!-- Teacher Login -->
+    <div class="login-box">
+      <div class="card teacher" onclick="window.location.href='flogin.html'">
+        <img src="https://cdn-icons-png.flaticon.com/512/4140/4140037.png" alt="Teacher">
+      </div>
+      <div class="label">Teacher Login</div>
+    </div>
+
+    <!-- Student Login -->
+    <div class="login-box">
+      <div class="card student" onclick="window.location.href='login.html'">
+        <img src="https://cdn-icons-png.flaticon.com/512/201/201818.png" alt="Student">
+      </div>
+      <div class="label">Student Login</div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <footer>
+    <div class="footer-bottom">
+      <p>© 2025 Campus Connect | All Rights Reserved</p>
+    </div>
+  </footer>
+
+</body>
+</html>

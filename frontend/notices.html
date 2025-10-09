@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Official Notices</title>
+    <link rel="icon" href="assets/images/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            /* Define a vibrant Orange and clear color palette */
+            --primary-color: #e67e22;
+            /* Vibrant Orange for main action/Border */
+            --secondary-color: #f39c12;
+            /* Amber/Gold for branding accents */
+            --general-bg: #fff8ee;
+            /* Very light orange for General notices */
+            --urgent-bg: #fde5d6;
+            /* Light peach/orange for Urgent notices */
+            --event-bg: #eaf7ed;
+            /* Light green for Event notices (for contrast) */
+            --placement-bg: #f9f0d6;
+            /* Light yellow/gold for Placement notices */
+            --text-color: #34495e;
+            /* Dark Slate Blue for readability */
+            --background-color: #fffaf5;
+            /* Very light, warm background */
+            --card-background: #ffffff;
+            --border-color: #dfe6e9;
+            --shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 6px 15px rgba(230, 126, 34, 0.2);
+        }
+        
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background: var(--background-color);
+            padding: 30px 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        /* --- Headings --- */
+        
+        h2 {
+            color: var(--text-color);
+            font-weight: 800;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            border-bottom: 4px solid var(--primary-color);
+            padding-bottom: 8px;
+            display: inline-block;
+            animation: fadeInDown 0.6s ease-out;
+        }
+        
+        h3 {
+            color: var(--text-color);
+            font-weight: 700;
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.4rem;
+        }
+        /* --- Form (Notice Creation) Styling --- */
+        
+        form {
+            background: var(--card-background);
+            padding: 25px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-top: 5px solid var(--primary-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        form:hover {
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        form input,
+        form textarea,
+        form select {
+            display: block;
+            margin: 12px 0;
+            padding: 12px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.3s;
+        }
+        
+        form input:focus,
+        form textarea:focus,
+        form select:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
+        }
+        
+        form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+        
+        form button {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 20px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            transition: background-color 0.3s, transform 0.2s;
+            box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3);
+        }
+        
+        form button:hover {
+            background: #d37420;
+            transform: translateY(-1px);
+        }
+        /* --- Notice Display Styling --- */
+        
+        .notice {
+            padding: 20px;
+            margin-bottom: 12px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            transition: transform 0.3s ease, opacity 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            /* KEY CHANGE: Add 2px orange border around the entire card */
+            border: 2px solid var(--primary-color);
+            /* Removed old border-left and border: 1px solid rgba... */
+        }
+        
+        .notice:hover {
+            transform: scale(1.005);
+        }
+        
+        .notice h3 {
+            margin: 0 0 5px;
+            font-weight: 700;
+            font-size: 1.3rem;
+        }
+        
+        .notice-content {
+            margin-top: 10px;
+            color: #555;
+        }
+        
+        .notice-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+            padding-top: 10px;
+            border-top: 1px dashed var(--border-color);
+        }
+        
+        .notice small {
+            color: #7f8c8d;
+            font-size: 0.85rem;
+        }
+        /* Category-specific styling - only updating backgrounds/headings, border is now universal orange */
+        
+        .general {
+            background: var(--general-bg);
+        }
+        
+        .general h3 {
+            color: var(--text-color);
+        }
+        
+        .urgent {
+            background: var(--urgent-bg);
+        }
+        
+        .urgent h3 {
+            color: var(--primary-color);
+        }
+        
+        .urgent .notice-status {
+            background: var(--primary-color);
+            color: white;
+        }
+        
+        .event {
+            background: var(--event-bg);
+        }
+        
+        .event h3 {
+            color: #27ae60;
+        }
+        
+        .placement {
+            background: var(--placement-bg);
+        }
+        
+        .placement h3 {
+            color: var(--text-color);
+        }
+        
+        .notice-status {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 4px 8px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            background: #f1c40f;
+            color: var(--text-color);
+        }
+        
+        .urgent .notice-status {
+            background: var(--primary-color);
+            color: white;
+        }
+        /* --- Animations --- */
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        /* --- Media Queries --- */
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+            .notice {
+                padding: 15px;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>📌 Official Notices</h2>
+
+        <form id="noticeForm" style="display:none;">
+            <input type="text" id="title" placeholder="Notice Title (e.g., Exam Postponement)" required>
+            <textarea id="content" placeholder="Write the notice details here..." required></textarea>
+
+            <select id="category">
+                <option value="general">📢 General</option>
+                <option value="urgent">🔴 Urgent</option>
+                <option value="event">🎉 Event</option>
+                <option value="placement">💼 Placement</option>
+            </select>
+
+            <button type="submit">Post Notice</button>
+        </form>
+
+        <h3>All Notices</h3>
+        <div id="notices">
+            <div class="notice urgent">
+                <h3>Semester Break Timetable Update</h3>
+                <div class="notice-content">
+                    Due to unforeseen administrative tasks, the semester break will begin three days later than originally scheduled. Please check the attachment for the revised timetable.
+                </div>
+                <div class="notice-footer">
+                    <small>Posted by Administration on 2025-10-09</small>
+                    <span class="notice-status">URGENT</span>
+                </div>
+            </div>
+
+            <div class="notice event">
+                <h3>Annual Cultural Fest Registration Open</h3>
+                <div class="notice-content">
+                    Registrations for the Annual Cultural Fest are now open! Sign up for dance, music, drama, and literary events before the deadline.
+                </div>
+                <div class="notice-footer">
+                    <small>Posted by Cultural Committee on 2025-10-05</small>
+                    <span class="notice-status">EVENT</span>
+                </div>
+            </div>
+
+            <div class="notice general">
+                <h3>Library Book Submission Reminder</h3>
+                <div class="notice-content">
+                    All students are reminded to submit their currently issued library books before the semester ends to avoid late fees.
+                </div>
+                <div class="notice-footer">
+                    <small>Posted by Library Staff on 2025-10-01</small>
+                    <span class="notice-status">GENERAL</span>
+                </div>
+            </div>
+
+            <div class="notice placement">
+                <h3>TCS Placement Drive Schedule</h3>
+                <div class="notice-content">
+                    The TCS campus drive first round (Aptitude Test) will be held on Nov 5th. All eligible students must confirm their participation by Oct 20th on the portal.
+                </div>
+                <div class="notice-footer">
+                    <small>Posted by Placement Cell on 2025-10-08</small>
+                    <span class="notice-status">PLACEMENT</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/notices.js"></script>
+</body>
+
+</html>
