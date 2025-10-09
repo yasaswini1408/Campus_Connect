@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQs - Campus Connect</title>
+
+    <style>
+        /* Base Styles (Consistent with About Page) */
+        
+         :root {
+            --primary-color: #004d99;
+            --secondary-color: #3b82f6;
+            --background-light: #f1f8ff;
+            --text-dark: #1f2937;
+            --font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            --border-radius: 8px;
+            --shadow-light: 0 4px 12px rgba(0, 0, 0, 0.1);
+            --border-medium: 1px solid #d1d5db;
+        }
+        
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: var(--font-family);
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--background-light);
+            padding: 40px 0;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        h1 {
+            font-size: 3rem;
+            color: var(--primary-color);
+            text-align: center;
+            margin-bottom: 0.25em;
+            font-weight: 700;
+        }
+        
+        .sub-heading {
+            text-align: center;
+            color: var(--secondary-color);
+            font-size: 1.2rem;
+            margin-bottom: 40px;
+        }
+        
+        h2 {
+            font-size: 2rem;
+            color: var(--primary-color);
+            margin-top: 2em;
+            margin-bottom: 0.5em;
+            padding-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        p {
+            margin-bottom: 1em;
+            font-weight: 400;
+        }
+        /* FAQ Accordion Styling */
+        
+        .faq-accordion {
+            margin-top: 20px;
+            border: var(--border-medium);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow-light);
+            background: white;
+        }
+        
+        .faq-item {
+            border-bottom: var(--border-medium);
+        }
+        
+        .faq-item:last-child {
+            border-bottom: none;
+        }
+        /* Question (The Header/Button) */
+        
+        .faq-question {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 25px;
+            width: 100%;
+            text-align: left;
+            background-color: white;
+            color: var(--text-dark);
+            font-size: 1.15rem;
+            font-weight: 600;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.2s ease;
+        }
+        
+        .faq-question:hover {
+            background-color: #e5f0ff;
+            /* Lighter blue hover */
+        }
+        
+        .faq-question:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--secondary-color);
+        }
+        
+        .toggle-icon {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            line-height: 1;
+            margin-left: 10px;
+            /* In a live application, this would rotate with JS */
+            /* transform: rotate(0deg); */
+            /* transition: transform 0.2s ease; */
+        }
+        /* Answer Content */
+        
+        .faq-answer {
+            padding: 0 25px;
+            background-color: #f9fbfc;
+            /* Very slight blue background for answer */
+            border-top: 1px solid #eee;
+            /* The following CSS simulates the closed state for structure */
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.4s ease-in-out, padding 0.4s ease-in-out;
+            padding-top: 0;
+            padding-bottom: 0;
+        }
+        /* Class to apply when question is active/open (requires JS) */
+        
+        .faq-answer.open {
+            max-height: 500px;
+            /* Needs to be larger than content height */
+            padding-top: 15px;
+            padding-bottom: 20px;
+        }
+        
+        .faq-answer p {
+            font-size: 1rem;
+            color: var(--text-dark);
+            margin: 0;
+        }
+        /* Note: For simplicity, I've left the answers visually open below 
+           for the default state, as I can't include JavaScript here. 
+           If you add JS to toggle the 'open' class, it will work perfectly.
+        */
+        /* Responsive Design */
+        
+        @media (max-width: 600px) {
+            h1 {
+                font-size: 2.2rem;
+            }
+            .sub-heading {
+                font-size: 1rem;
+                margin-bottom: 30px;
+            }
+            .faq-question {
+                font-size: 1rem;
+                padding: 15px 18px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <h1>Frequently Asked Questions</h1>
+        <p class="sub-heading">Quick answers to the most common questions about using Campus Connect.</p>
+
+        <h2>Account & Access</h2>
+        <div class="faq-accordion">
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    How do I log in for the first time?
+                    <span class="toggle-icon">+</span>
+                </button>
+                <div class="faq-answer open">
+                    <p>Use your official University ID (e.g., U123456) and your standard campus network password. If you are having trouble, please use the 'Forgot Password' link, which will direct you to the central university login portal.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    I forgot my password. What should I do?
+                    <span class="toggle-icon">+</span>
+                </button>
+                <div class="faq-answer open">
+                    <p>Campus Connect uses your university's central authentication system. You must reset your password via the official university IT support page linked on our login screen. We do not store or manage your credentials directly.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Academic Features</h2>
+        <div class="faq-accordion">
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    How often are my Attendance and Exam Results updated?
+                    <span class="toggle-icon">+</span>
+                </button>
+                <div class="faq-answer open">
+                    <p>Attendance is updated daily by your instructor's system. Exam Results and official grades are updated within 24 hours of being posted by the Registrar's Office or faculty, following institutional approval processes.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Why can't I see my Timetable for next semester?
+                    <span class="toggle-icon">+</span>
+                </button>
+                <div class="faq-answer open">
+                    <p>Your timetable is synced directly with the university scheduling system. If the schedule has not been officially released yet, it will not appear. Please check the Academic Calendar for the official release date.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    Where can I find materials provided by my faculty?
+                    <span class="toggle-icon">+</span>
+                </button>
+                <div class="faq-answer open">
+                    <p>Navigate to the 'My Courses' section, select the relevant course, and look under the 'Materials' tab. All lecture notes, documents, and external links shared by your faculty are organized there.</p>
+                </div>
+            </div>
+        </div>
+
+        <h2>Community & Support</h2>
+        <div class="faq-accordion">
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    How do Discussion Groups work, and are they moderated?
+                    <span class="toggle-icon">+</span>
+                </button>
+                <div class="faq-answer open">
+                    <p>Discussion Groups allow students to connect for study, projects, and general interests. While they are student-driven, all groups are monitored for adherence to the Student Code of Conduct. You can report inappropriate behavior using
+                        the 'Report' function within any group.</p>
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question">
+                    If I 'Ask a Doubt,' who answers it?
+                    <span class="toggle-icon">+</span>
+                </button>
+                <div class="faq-answer open">
+                    <p>The 'Ask a Doubt' feature directs your question to the relevant course community. It is primarily answered by verified peers and, occasionally, teaching assistants or faculty. You will receive a notification when a solution is posted.</p>
+                </div>
+            </div>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <p>Can't find your answer? <a href="contact.html" style="color: var(--primary-color); font-weight: 600; text-decoration: none;">Contact our Support Team</a>.</p>
+        </div>
+    </div>
+
+</body>
+
+</html>
