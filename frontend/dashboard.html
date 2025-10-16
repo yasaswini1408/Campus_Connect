@@ -1,0 +1,369 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>VIIT - Student Portal</title>
+  <link rel="icon" href="assets/images/icon.png">
+  <style>
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: #f4f6fa;
+      color: #333;
+    }
+    .header {
+      background: linear-gradient(90deg, #3b1d92, #4a3ee0);
+      color: white;
+      padding: 25px;
+      border-radius: 0 0 20px 20px;
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+    .profile-icon {
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      background: #fff;
+      color: #3b1d92;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: bold;
+      font-size: 18px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    }
+    .header-text h1 {
+      margin: 0;
+      font-size: 22px;
+    }
+    .header-text p {
+      margin: 3px 0 0;
+      font-size: 14px;
+      opacity: 0.9;
+    }
+    .banner {
+      background: url('https://i.ytimg.com/vi/sq8ISpdiaLc/maxresdefault.jpg') no-repeat center center;
+      background-size: cover;
+      margin: 20px;
+      padding: 80px 20px;
+      border-radius: 15px;
+      color: white;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+      animation: bannerFadeIn 1.5s ease-out;
+    }
+    .banner h1 {
+      font-size: 48px;
+      font-weight: 900;
+      margin: 0;
+      color: white;
+      text-shadow: 4px 4px 8px rgba(0,0,0,0.9), 0 0 25px rgba(255,255,255,0.8);
+      animation: textGlow 2s ease-in-out infinite alternate;
+    }
+    @keyframes textGlow {
+      from {
+        text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 20px rgba(255,255,255,0.5);
+      }
+      to {
+        text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 30px rgba(255,255,255,0.8);
+      }
+    }
+    .banner::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(135deg, rgba(59, 29, 146, 0.4), rgba(74, 62, 224, 0.4));
+      border-radius: 15px;
+    }
+    .banner > * {
+      position: relative;
+      z-index: 1;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+    }
+    @keyframes bannerFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .banner small {
+      display: block;
+      margin-top: 10px;
+      font-size: 20px;
+      font-weight: normal;
+    }
+    .card-container {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+      margin: 20px;
+      justify-content: center;
+    }
+    .card {
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      text-align: center;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+    }
+    .card:hover {
+      transform: translateY(-5px);
+      border: 2px solid #007bff;
+    }
+    .icon {
+      font-size: 30px;
+      margin-bottom: 10px;
+    }
+    .blue { color: #007bff; }
+    .orange { color: #ff8800; }
+    .purple { color: #6f42c1; }
+    .green { color: #28a745; }
+    .teal { color: #20c997; }
+    .gray { color: #6c757d; }
+    .pink { color: #e83e8c; }
+    .card h3 {
+      margin: 5px 0;
+      font-size: 16px;
+    }
+    .card p {
+      margin: 3px 0;
+      font-size: 13px;
+      color: #555;
+    }
+    .card a {
+      color: #007bff;
+      font-size: 13px;
+      text-decoration: none;
+    }
+    .card button {
+      background: linear-gradient(90deg, #3b1d92, #4a3ee0);
+      color: white;
+      border: none;
+      padding: 8px 16px;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 13px;
+      transition: background 0.2s;
+    }
+    .card button:hover {
+      background: linear-gradient(90deg, #2a156a, #3a2ab0);
+    }
+    #logoutBtn{
+      position: absolute; 
+      top: 50px; 
+      right: 20px; 
+      padding: 8px 14px; 
+      background: #e63946; 
+      color: white; 
+      border: none; 
+      border-radius: 8px; 
+      cursor: pointer;
+    }
+    @media (max-width: 768px) {
+      .card-container {
+        grid-template-columns: 1fr;
+      }
+      .card-container .card:last-child {
+        grid-column: auto;
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="profile-icon">😎</div>
+    <div class="header-text">
+      <h1>Welcome back, Aarav Sharma</h1>
+      <p>Roll No: CS202301</p>
+      <p>Computer Science • 3rd Year</p>
+    </div>
+    <button id="logoutBtn">Logout</button>
+  </div>
+  <div class="banner">
+    <h1>Campus Connect</h1>
+    <small>Your gateway to campus life</small>
+  </div>
+    <div style="position: absolute; top: 10px; right: 20px;">
+      <button id="notifBtn">🔔 Notifications</button>
+      <div id="notifList" style="display:none; background:white; border:1px solid #ddd; padding:10px; border-radius:6px; max-height:200px; overflow-y:auto;">
+    </div>
+  </div>
+
+  <div class="card-container">
+    <div class="card">
+      <div class="icon blue">👤</div>
+      <h3>Profile</h3>
+      <p>View and edit your details</p>
+      <button onclick="window.location.href='#'">Go to Profile</button>
+    </div>
+    <div class="card">
+      <div class="icon orange">📊</div>
+      <h3>Attendance</h3>
+      <p>Track your classes</p>
+      <button onclick="window.location.href='student-attendance.html'">View Attendance</button>
+    </div>
+    <div class="card">
+      <div class="icon purple">🎓</div>
+      <h3>Result</h3>
+      <p>Check your performance</p>
+      <button onclick="window.location.href='student-results.html'">View Results</button>
+    </div>
+    <div class="card">
+      <div class="icon green">📢</div>
+      <h3>Notices</h3>
+      <p>Stay updated with latest news</p>
+      <button onclick="window.location.href='notices.html'">See Updates</button>
+    </div>
+    <div class="card">
+      <div class="icon teal">📝</div>
+      <h3>Assignments</h3>
+      <p>Submit and check status</p>
+      <button onclick="window.location.href='student-assignments.html'">View Assignments</button>
+    </div>
+    <div class="card">
+      <div class="icon gray">📚</div>
+      <h3>Library</h3>
+      <p>Access study resources</p>
+      <button onclick="window.location.href='library.html'">Open Library</button>
+    </div>
+    <div class="card">
+      <div class="icon gray">📚</div>
+      <h3>Study Groups</h3>
+      <p>Collective learning</p>
+      <button onclick="window.location.href='study-groups.html'">Study Together!</button>
+    </div>
+    <div class="card">
+      <div class="icon gray">❓</div>
+      <h3>Ask Doubts</h3>
+      <p>Doubt solving by faculty</p>
+      <button onclick="window.location.href='student-doubts.html'">Post a doubt</button>
+    </div>
+    <div class="card">
+      <div class="icon gray">Ding-dong!</div>
+      <h3>Materials</h3>
+      <p>Access notes and materials</p>
+      <button onclick="window.location.href='student-resources.html'">See resources</button>
+    </div>
+    <div class="card">
+      <div class="icon pink">💬</div>
+      <h3>Campus Wall</h3>
+      <p>Common space for all students</p>
+      <button onclick="window.location.href='campuswall.html'">Join Discussion</button>
+    </div>
+  </div>
+  <script>
+  // Helper to get token
+  function getToken() {
+    return localStorage.getItem('token');
+  }
+
+  // Redirect to login if not logged in
+  if (!getToken()) {
+    window.location.href = "login.html";
+  }
+
+  // Load notifications
+  async function loadNotifications() {
+  try {
+    const res = await fetch('http://localhost:3000/api/notifications/my', {
+      headers: { 'Authorization': `Bearer ${getToken()}` }
+    });
+
+    if (!res.ok) return;
+
+    const notifs = await res.json();
+    const list = document.getElementById('notifList');
+    list.innerHTML = '';
+
+    if (notifs.length === 0) {
+      list.innerHTML = '<p>No notifications yet.</p>';
+      return;
+    }
+
+    notifs.forEach(n => {
+      const el = document.createElement('div');
+      el.style.marginBottom = "8px";
+      el.style.padding = "5px";
+      el.style.background = n.seen ? "#f4f4f4" : "#e6f0ff";
+      el.style.borderRadius = "4px";
+
+      // Check if it's an assignment notification
+      if (n.title.includes("Assignment")) {
+        el.innerHTML = `
+          <strong>📘 ${n.title}</strong><br>
+          <small>${n.message}</small><br>
+          ${n.link ? `<a href="${n.link}">Go to Assignments</a>` : ""}
+        `;
+      } else {
+        el.innerHTML = `
+          <strong>${n.title}</strong><br>
+          <small>${n.message}</small><br>
+          ${n.link ? `<a href="${n.link}">View</a>` : ""}
+        `;
+      }
+
+      list.appendChild(el);
+    });
+  } catch (err) {
+    console.error("Error loading notifications:", err);
+  }
+}
+
+  // Load user info into header
+  const user = JSON.parse(localStorage.getItem('user'));
+  if (user) {
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelector('.header-text h1').innerText = `Welcome back, ${user.name}`;
+      document.querySelector('.header-text p').innerText = `Reg No: ${user.regNo}`;
+    });
+  }
+
+  // Logout button
+  document.getElementById('logoutBtn').addEventListener('click', () => {
+    localStorage.removeItem('token');
+    localStorage.removeItem('user');
+    window.location.href = 'login.html';
+  });
+
+  // Toggle dropdown + load notifications
+document.getElementById('notifBtn').addEventListener('click', async () => {
+  const list = document.getElementById('notifList');
+  if (list.style.display === 'none' || list.style.display === '') {
+    list.style.display = 'block';
+    
+    // Mark all as read
+    try {
+      await fetch('http://localhost:3000/api/notifications/mark-read', {
+        method: 'PUT',
+        headers: { 'Authorization': `Bearer ${getToken()}` }
+      });
+    } catch (err) {
+      console.error("Error marking notifications as read:", err);
+    }
+
+    // Reload notifications (will reset unread count)
+    loadNotifications();
+  } else {
+    list.style.display = 'none';
+  }
+});
+
+  // Load notifications count once on page load
+  loadNotifications();
+</script>
+
+
+</body>
+</html>

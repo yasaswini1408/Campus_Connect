@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Results</title>
+  <link rel="icon" href="assets/images/icon.png">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <style>
+    body { font-family: Arial, sans-serif; background: #f4f6f8; padding: 20px; }
+    h2 { color: #333; }
+    .result-card {
+      background: white;
+      padding: 15px;
+      margin-bottom: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+    table {
+      width: 100%; border-collapse: collapse; margin-top: 10px;
+    }
+    th, td {
+      border: 1px solid #ddd; padding: 8px; text-align: center;
+    }
+    th { background: #007BFF; color: white; }
+    .gpa {
+      font-weight: bold;
+      margin-top: 10px;
+      color: #007BFF;
+    }
+    #chartContainer {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      margin-top: 30px;
+    }
+  </style>
+</head>
+<body>
+  <h2>My Results</h2>
+
+  <div id="results"></div>
+
+  <div id="chartContainer">
+    <h3>Performance Trend</h3>
+    <canvas id="gpaChart"></canvas>
+  </div>
+
+  <script src="assets/js/student-results.js"></script>
+</body>
+</html>

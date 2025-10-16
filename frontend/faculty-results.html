@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Results</title>
+    <link rel="icon" href="assets/images/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --primary-color: #e67e22;
+            --secondary-color: #34495e;
+            --highlight-color: #f1c40f;
+            --text-color: #34495e;
+            --background-color: #fffaf5;
+            --card-background: #ffffff;
+            --border-color: #e0e0e0;
+            --shadow: 0 10px 30px rgba(0, 0, 0, 0.07);
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background: var(--background-color);
+            padding: 40px 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            font-weight: 800;
+            margin-bottom: 30px;
+            font-size: 2.2rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 5px solid var(--primary-color);
+            padding-bottom: 5px;
+            display: inline-block;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        
+        h3 {
+            color: var(--secondary-color);
+            font-weight: 700;
+            margin-bottom: 20px;
+            font-size: 1.4rem;
+            border-left: 5px solid var(--primary-color);
+            padding-left: 10px;
+        }
+        
+        form {
+            background: var(--card-background);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            max-width: 500px;
+            margin: 0 auto 40px;
+            border: 1px solid var(--border-color);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        form:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(230, 126, 34, 0.2);
+        }
+        
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        select,
+        input[type="file"] {
+            width: 100%;
+            padding: 12px;
+            margin: 8px 0 15px;
+            box-sizing: border-box;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            background-color: #ffffff;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        select:focus,
+        input[type="file"]:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
+        }
+        
+        input[type="file"] {
+            border: 2px dashed var(--highlight-color);
+            background: #fffbe6;
+            cursor: pointer;
+            padding: 20px 12px;
+        }
+        
+        button[type="submit"] {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 25px;
+            font-size: 1.15rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
+            box-shadow: 0 6px 15px rgba(230, 126, 34, 0.4);
+        }
+        
+        button[type="submit"]:hover {
+            background: #d37420;
+            transform: scale(1.02);
+        }
+        
+        .result-list {
+            margin-top: 30px;
+            background: var(--card-background);
+            padding: 25px;
+            border-radius: 15px;
+            box-shadow: var(--shadow);
+            max-width: 500px;
+            margin: 0 auto;
+            border-left: 5px solid var(--primary-color);
+        }
+        
+        .result-item {
+            border-bottom: 1px solid var(--border-color);
+            padding: 12px 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s;
+        }
+        
+        .result-item:last-child {
+            border-bottom: none;
+        }
+        
+        .result-item:hover {
+            background-color: #fff8f0;
+            padding-left: 5px;
+        }
+        
+        .upload-info {
+            font-weight: 600;
+            color: var(--secondary-color);
+        }
+        
+        .upload-date {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 20px 10px;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            form,
+            .result-list {
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>📤 Upload Results</h2>
+
+        <form id="resultUploadForm" enctype="multipart/form-data">
+            <label for="examType">Select Exam Type:</label>
+            <select id="examType" name="examType" required>
+                <option value="mid1">Mid-1</option>
+                <option value="mid2">Mid-2</option>
+                <option value="endsem">End Semester</option>
+                <option value="quiz">Quiz/Internal</option>
+            </select>
+
+            <label for="file">Upload CSV/Excel Result File:</label>
+            <input type="file" id="file" name="file" accept=".csv,.xlsx,.xls" required>
+
+            <button type="submit">Upload Results</button>
+        </form>
+
+        <div class="result-list">
+            <h3>📂 Previous Uploads History</h3>
+            <div id="previousUploads">
+                <div class="result-item">
+                    <span class="upload-info">End Semester - CSE, 3rd Year</span>
+                    <span class="upload-date">Uploaded: 2025-05-10</span>
+                </div>
+                <div class="result-item">
+                    <span class="upload-info">Mid-2 - ECE, 2nd Year</span>
+                    <span class="upload-date">Uploaded: 2025-04-01</span>
+                </div>
+                <div class="result-item">
+                    <span class="upload-info">Mid-1 - IT, 4th Year</span>
+                    <span class="upload-date">Uploaded: 2025-02-15</span>
+                </div>
+                <p id="noUploadsMessage" style="color:#7f8c8d; text-align: center; margin-top: 10px; display: none;">No previous uploads found.</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/faculty-results.js"></script>
+</body>
+
+</html>
