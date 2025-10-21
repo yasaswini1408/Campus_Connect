@@ -5,35 +5,136 @@
   <title>Library</title>
   <link rel="icon" href="assets/images/icon.png">
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background: #f4f6f9; }
-    h2 { color: #333; }
+    body {
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: #f4f6fa;
+      color: #333;
+    }
+    .header {
+      background: linear-gradient(90deg, #3b1d92, #4a3ee0);
+      color: white;
+      padding: 25px 40px;
+      margin-top: 20px;
+      border-radius: 20px;
+      text-align: center;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 12px rgba(59,29,146,0.3);
+    }
+    .header h2 {
+      margin: 0;
+      font-size: 2em;
+      color: white;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h2 {
+      color: #3b1d92;
+      margin-bottom: 20px;
+    }
+    h3 {
+      color: #3b1d92;
+      margin-bottom: 15px;
+    }
     #searchBar {
-      width: 300px; padding: 8px; border-radius: 6px; border: 1px solid #ccc;
+      width: 100%;
+      max-width: 400px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 2px solid #e9ecef;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+    #searchBar:focus {
+      outline: none;
+      border-color: #4a3ee0;
+      box-shadow: 0 0 0 3px rgba(74, 62, 224, 0.1);
     }
     button {
-      padding: 6px 10px; border: none; border-radius: 6px; cursor: pointer;
-      background: #3b1d92; color: white;
+      padding: 12px 20px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      background: linear-gradient(90deg, #3b1d92, #4a3ee0);
+      color: white;
+      font-size: 16px;
+      font-weight: bold;
+      transition: background 0.2s;
+      margin-left: 10px;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #2a156a, #3a2ab0);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
     }
     .book, .mybook {
-      background: white; margin: 10px 0; padding: 15px; border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background: white;
+      margin: 15px 0;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
     }
-    .book h3, .mybook h3 { margin: 0; }
-    small { color: #666; }
-    #results, #myBooks { margin-top: 20px; }
+    .book:hover, .mybook:hover {
+      transform: translateY(-5px);
+      border: 2px solid #007bff;
+    }
+    .book h3, .mybook h3 {
+      margin: 0 0 10px 0;
+      font-size: 1.2em;
+      color: #495057;
+    }
+    .book p, .mybook p {
+      margin: 5px 0;
+      color: #6c757d;
+    }
+    small {
+      color: #6c757d;
+    }
+    #results, #myBooks {
+      margin-top: 30px;
+    }
+    .search-section {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+      .search-section {
+        flex-direction: column;
+        align-items: stretch;
+      }
+      button {
+        margin-left: 0;
+        margin-top: 10px;
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="header">
+    <h2>📚 Library</h2>
+  </div>
 
-  <h2>📚 Library</h2>
+  <div class="container">
+    <div class="search-section">
+      <input type="text" id="searchBar" placeholder="Search by book title...">
+      <button onclick="searchBooks()">Search</button>
+    </div>
 
-  <input type="text" id="searchBar" placeholder="Search by book title...">
-  <button onclick="searchBooks()">Search</button>
+    <div id="results"></div>
 
-  <div id="results"></div>
-
-  <h3>My Borrowed Books</h3>
-  <div id="myBooks"></div>
+    <h3>My Borrowed Books</h3>
+    <div id="myBooks"></div>
+  </div>
 
   <script src="assets/js/library.js"></script>
 </body>
