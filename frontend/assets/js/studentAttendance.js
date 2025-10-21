@@ -57,7 +57,11 @@ async function loadAttendance() {
     // Overall stats
     // -------------------
     const overallPercent = totalClasses > 0 ? ((totalPresent / totalClasses) * 100).toFixed(2) : 0;
+<<<<<<< HEAD
     document.getElementById('overall').innerHTML = `Overall: ${totalPresent}/${totalClasses} (<span style="font-weight: bold; color: #007bff;">${overallPercent}%</span>)`;
+=======
+    document.getElementById('overall').textContent = `Overall: ${totalPresent}/${totalClasses} (${overallPercent}%)`;
+>>>>>>> 659307a5db6b3e39f3cab4f305cf6e3a3e1a2436
 
     // Max classes they can miss and still stay above 75%
     let canMiss = 0;
