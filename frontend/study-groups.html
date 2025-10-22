@@ -5,45 +5,174 @@
   <title>Study Groups</title>
   <link rel="icon" href="assets/images/icon.png">
   <style>
-    body { font-family: Arial, sans-serif; margin: 20px; background: #f4f6f9; }
-    h2, h3 { color: #333; }
-    form {
-      background: white; padding: 15px; border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1); margin-bottom: 20px;
+    body {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #f4f6fa;
+      min-height: 100vh;
+      color: #333;
     }
-    input {
-      display: block; margin: 10px 0; padding: 8px;
-      width: 300px; border: 1px solid #ccc; border-radius: 6px;
+    .header {
+      background: linear-gradient(90deg, #3b1d92, #4a3ee0);
+      color: white;
+      padding: 25px 40px;
+      margin-top: 20px;
+      border-radius: 20px;
+      text-align: center;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 12px rgba(59,29,146,0.3);
     }
-    button {
-      padding: 8px 14px; background: #3b1d92; color: white;
-      border: none; border-radius: 6px; cursor: pointer;
+    .header h2 {
+      margin: 0;
+      font-size: 2em;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+    h2 {
+      background: linear-gradient(90deg, #3b1d92, #4a3ee0);
+      color: white;
+      text-align: center;
+      margin-bottom: 30px;
+      font-size: 1.8em;
+      padding: 15px;
+      border-radius: 15px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+      position: relative;
+    }
+    .assignment-section {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 20px;
+      justify-content: space-between;
+    }
+    .assignment-column {
+      flex: 1;
+      min-width: 300px;
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 3px 8px rgba(0,0,0,0.1);
     }
     .group {
-      background: white; margin: 10px 0; padding: 15px; border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      background: #f8f9fa;
+      padding: 20px;
+      margin-bottom: 15px;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+      transition: transform 0.2s;
+      border-left: 5px solid #4a3ee0;
     }
-    .group h3 { margin: 0; }
-    .group small { color: #666; }
+    .group:hover {
+      transform: translateY(-5px);
+      border: 2px solid #007bff;
+    }
+    .group h3 {
+      margin-top: 0;
+      color: #495057;
+      font-size: 1.2em;
+    }
+    .group p {
+      margin: 10px 0;
+      color: #6c757d;
+    }
+    input, button {
+      margin: 10px 0;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+    input {
+      background: #fff;
+      border: 2px solid #e9ecef;
+    }
+    input:focus {
+      outline: none;
+      border-color: #4a3ee0;
+      box-shadow: 0 0 0 3px rgba(74, 62, 224, 0.1);
+    }
+    button {
+      background: linear-gradient(90deg, #3b1d92, #4a3ee0);
+      color: white;
+      cursor: pointer;
+      font-weight: bold;
+    }
+    button:hover {
+      background: linear-gradient(90deg, #2a156a, #3a2ab0);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+    #toast {
+      visibility: hidden;
+      min-width: 300px;
+      margin-left: -150px;
+      background: linear-gradient(90deg, #3b1d92, #4a3ee0);
+      color: #fff;
+      text-align: center;
+      border-radius: 12px;
+      padding: 16px;
+      position: fixed;
+      z-index: 9999;
+      left: 50%;
+      bottom: 30px;
+      font-size: 16px;
+      font-weight: bold;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.3);
+      transition: all 0.5s ease;
+      opacity: 0;
+      transform: translateY(100px);
+    }
+    #toast.show {
+      visibility: visible;
+      opacity: 1;
+      transform: translateY(0);
+    }
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+      h2 {
+        font-size: 2em;
+      }
+      .assignment-column {
+        min-width: 100%;
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="header">
+    <h2>👥 Study Groups</h2>
+  </div>
 
-  <h2>👥 Study Groups</h2>
-
-  <!-- Create Group Form -->
-  <form id="createGroupForm">
-    <input type="text" id="groupName" placeholder="Group Name" required>
-    <input type="text" id="subject" placeholder="Subject" required>
-    <button type="submit">Create Group</button>
-  </form>
-
-  <h3>All Study Groups</h3>
-  <div id="allGroups"></div>
-
-  <h3>My Groups</h3>
-  <div id="myGroups"></div>
+  <div class="container">
+    <div class="assignment-section">
+      <div class="assignment-column">
+        <h2>Create Group</h2>
+        <form id="createGroupForm">
+          <input type="text" id="groupName" placeholder="Group Name" required>
+          <input type="text" id="subject" placeholder="Subject" required>
+          <button type="submit">Create Group</button>
+        </form>
+      </div>
+      <div class="assignment-column">
+        <h2>All Study Groups</h2>
+        <div id="allGroups"></div>
+      </div>
+      <div class="assignment-column">
+        <h2>My Groups</h2>
+        <div id="myGroups"></div>
+      </div>
+    </div>
+  </div>
 
   <script src="assets/js/study-groups.js"></script>
+  <div id="toast"></div>
 </body>
 </html>

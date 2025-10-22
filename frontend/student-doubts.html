@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+g<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -6,61 +6,133 @@
   <link rel="icon" href="assets/images/icon.png">
   <style>
     body {
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
+      margin: 0;
+      font-family: "Segoe UI", Tahoma, sans-serif;
+      background: #f4f6fa;
+      color: #333;
+      min-height: 100vh;
+    }
+    .header {
+      background: linear-gradient(90deg, #3b1d92, #4a3ee0);
+      color: white;
+      padding: 25px 40px;
+      margin-top: 20px;
+      border-radius: 20px;
+      text-align: center;
+      border: 3px solid #fff;
+      box-shadow: 0 4px 12px rgba(59,29,146,0.3);
+    }
+    .header h2 {
+      margin: 0;
+      font-size: 2em;
+    }
+    .container {
+      max-width: 1200px;
+      margin: 0 auto;
       padding: 20px;
     }
-    h2 { color: #333; }
+    h3 {
+      color: #3b1d92;
+      margin-bottom: 15px;
+      font-size: 1.8em;
+      text-align: center;
+    }
     form {
       background: white;
-      padding: 15px;
-      border-radius: 10px;
-      box-shadow: 0 3px 6px rgba(0,0,0,0.1);
-      margin-bottom: 20px;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 3px 8px rgba(59,29,146,0.1);
+      border: 2px solid #e3f2fd;
+      margin-bottom: 30px;
     }
     input, textarea, select, button {
-      display: block;
-      width: 100%;
       margin: 10px 0;
-      padding: 8px;
+      padding: 12px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      font-size: 16px;
+      transition: background 0.2s;
+    }
+    input, textarea, select {
+      background: #fff;
+      border: 2px solid #e9ecef;
+    }
+    input:focus, textarea:focus, select:focus {
+      outline: none;
+      border-color: #4a3ee0;
+      box-shadow: 0 0 0 3px rgba(74, 62, 224, 0.1);
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
     }
     button {
-      background: #3498db;
+      background: linear-gradient(90deg, #3b1d92, #4a3ee0);
       color: white;
-      border: none;
-      border-radius: 5px;
       cursor: pointer;
+      font-weight: bold;
     }
-    button:hover { background: #2980b9; }
+    button:hover {
+      background: linear-gradient(90deg, #2a156a, #3a2ab0);
+      transform: translateY(-2px);
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
     .doubt {
       background: white;
-      padding: 15px;
+      padding: 20px;
       border-radius: 10px;
-      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+      box-shadow: 0 3px 8px rgba(59,29,146,0.1);
+      border: 2px solid #e3f2fd;
       margin-bottom: 15px;
+      transition: transform 0.2s;
+      border-left: 5px solid #4a3ee0;
     }
-    .doubt small { color: #777; }
-    .resolved { color: green; font-weight: bold; }
-    .pending { color: orange; font-weight: bold; }
+    .doubt:hover {
+      transform: translateY(-5px);
+      border: 2px solid #007bff;
+    }
+    .doubt small {
+      color: #6c757d;
+    }
+    .resolved {
+      color: green;
+      font-weight: bold;
+    }
+    .pending {
+      color: orange;
+      font-weight: bold;
+    }
+    @media (max-width: 768px) {
+      .container {
+        padding: 10px;
+      }
+      h3 {
+        font-size: 1.5em;
+      }
+    }
   </style>
 </head>
 <body>
+  <div class="header">
+    <h2>❓ My Doubts</h2>
+  </div>
 
-  <h2>❓ My Doubts</h2>
+  <div class="container">
+    <!-- Post a new doubt -->
+    <form id="doubtForm">
+      <input type="text" id="title" placeholder="Doubt Title" required>
+      <textarea id="description" placeholder="Describe your doubt..." required></textarea>
+      <select id="faculty" required>
+        <option value="">-- Select Faculty --</option>
+      </select>
+      <button type="submit">Submit Doubt</button>
+    </form>
 
-  <!-- Post a new doubt -->
-  <form id="doubtForm">
-    <input type="text" id="title" placeholder="Doubt Title" required>
-    <textarea id="description" placeholder="Describe your doubt..." required></textarea>
-    <select id="faculty" required>
-      <option value="">-- Select Faculty --</option>
-    </select>
-    <button type="submit">Submit Doubt</button>
-  </form>
-
-  <!-- My posted doubts -->
-  <h3>My Posted Doubts</h3>
-  <div id="doubtsList"></div>
+    <!-- My posted doubts -->
+    <h3>My Posted Doubts</h3>
+    <div id="doubtsList"></div>
+  </div>
 
   <script src="assets/js/studentDoubts.js"></script>
 </body>
