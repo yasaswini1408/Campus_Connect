@@ -1,0 +1,310 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Upload Results</title>
+  <link rel="icon" href="assets/images/icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --primary:#e67e22;
+      --secondary:#34495e;
+      --highlight:#f1c40f;
+      --resolved:#27ae60;
+      --bg:#fffaf5;
+      --card:#ffffff;
+      --muted:#7f8c8d;
+      --border:#e6ddd0;
+      --radius:14px;
+      --shadow: 0 12px 30px rgba(2,6,23,0.06);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%; margin:0}
+    body{
+      font-family:"Montserrat",system-ui,-apple-system,"Segoe UI",Roboto,Arial;
+      background:
+        radial-gradient(600px 240px at 10% 10%, rgba(230,126,34,0.06), transparent 8%),
+        linear-gradient(180deg,var(--bg),#fffefb);
+      color:var(--secondary);
+      padding:36px 20px;
+      -webkit-font-smoothing:antialiased;
+      -moz-osx-font-smoothing:grayscale;
+    }
+
+    .wrap{ max-width:980px; margin:0 auto; }
+
+    header{
+      display:flex;
+      gap:18px;
+      align-items:center;
+      margin-bottom:22px;
+    }
+
+    .badge{
+      width:66px; height:66px;
+      border-radius:16px;
+      display:grid; place-items:center;
+      background: linear-gradient(135deg,var(--primary), #f39c12);
+      color:white; font-weight:900; font-size:24px;
+      box-shadow: 0 10px 28px rgba(230,126,34,0.12);
+    }
+
+    h1{
+      margin:0; font-size:22px; color:var(--secondary); font-weight:800;
+      letter-spacing:0.6px;
+    }
+    p.lead{ margin:6px 0 0; color:var(--muted); font-size:13px; }
+
+    main{ display:grid; grid-template-columns: 1fr 340px; gap:22px; align-items:start; }
+
+    @media (max-width:980px){ main{ grid-template-columns:1fr; } }
+
+    /* Form card */
+    .card{
+      background:var(--card);
+      border-radius:var(--radius);
+      padding:20px;
+      border:1px solid var(--border);
+      box-shadow:var(--shadow);
+    }
+
+    .section-title{
+      display:flex; align-items:center; gap:10px; margin-bottom:12px;
+    }
+    .section-title h2{ margin:0; font-size:18px; color:var(--primary); text-transform:uppercase; letter-spacing:0.8px; }
+    .section-title .sub{ font-size:13px; color:var(--muted); font-weight:600; margin-left:6px; }
+
+    form{ display:flex; flex-direction:column; gap:12px; }
+
+    label{ font-weight:700; color:var(--secondary); font-size:13px; margin-top:6px; }
+    select, input[type="file"]{
+      width:100%; padding:12px 14px; border-radius:10px; border:1px solid var(--border);
+      background:linear-gradient(180deg, #fff, #fff); font-size:14px; color:var(--secondary);
+      outline:none; transition:box-shadow .16s, border-color .16s;
+    }
+    select:focus, input[type="file"]:focus{ box-shadow:0 8px 20px rgba(230,126,34,0.08); border-color:var(--primary); }
+
+    .file-wrap{
+      display:flex; gap:12px; align-items:center; padding:14px; border-radius:10px;
+      border:2px dashed rgba(241,196,15,0.25); background:#fffaf0;
+    }
+    .file-info{ font-size:13px; color:var(--muted); }
+
+    button[type="submit"]{
+      margin-top:6px; padding:13px 16px; border-radius:10px; border:none;
+      font-weight:800; letter-spacing:0.6px; text-transform:uppercase;
+      background: linear-gradient(90deg,var(--primary),var(--highlight)); color:#fff;
+      box-shadow: 0 10px 28px rgba(230,126,34,0.14); cursor:pointer; font-size:14px;
+      transition:transform .14s, box-shadow .18s;
+    }
+    button[type="submit"]:hover{ transform:translateY(-3px); box-shadow: 0 14px 36px rgba(230,126,34,0.18); }
+
+    /* History */
+    .history-title{ display:flex; align-items:center; justify-content:space-between; gap:8px; margin-bottom:12px; }
+    .history-title h3{ margin:0; color:var(--secondary); font-size:16px; border-left:6px solid var(--primary); padding-left:10px; }
+
+    .history-list{ display:flex; flex-direction:column; gap:10px; margin-top:6px; }
+
+    .history-item{
+      display:flex; justify-content:space-between; gap:12px; align-items:center;
+      padding:12px; border-radius:10px; background:linear-gradient(180deg,#fff, #fffefc);
+      border:1px solid var(--border); transition:transform .12s, box-shadow .14s;
+    }
+    .history-item:hover{ transform:translateY(-4px); box-shadow: 0 12px 30px rgba(2,6,23,0.06); }
+
+    .history-left{ display:flex; gap:12px; align-items:center; min-width:0; }
+    .exam-chip{
+      padding:8px 10px; border-radius:10px; font-weight:800; color:#fff; font-size:13px;
+      background: linear-gradient(135deg,var(--primary), var(--highlight));
+      box-shadow: 0 6px 18px rgba(230,126,34,0.08); min-width:72px; text-align:center;
+    }
+    .exam-meta{ min-width:0; }
+    .exam-meta .title{ font-weight:700; color:var(--secondary); font-size:14px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+    .exam-meta .sub{ font-size:13px; color:var(--muted); margin-top:4px; }
+
+    .uploaded-time{ color:var(--muted); font-size:13px; text-align:right; min-width:110px; }
+
+    /* empty state */
+    .empty{
+      text-align:center; color:var(--muted); padding:18px; border-radius:10px;
+      border:1px dashed var(--border); background:#fffaf8;
+    }
+
+    /* small helpers */
+    .row{ display:flex; gap:10px; align-items:center; flex-wrap:wrap; }
+    .note{ font-size:13px; color:var(--muted); }
+
+    @media (max-width:680px){
+      .badge{ width:56px; height:56px; }
+      main{ grid-template-columns:1fr; }
+      .uploaded-time{ text-align:left; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <div class="badge" aria-hidden="true">📂</div>
+      <div>
+        <h1>Upload Results</h1>
+        <p class="lead">Quickly upload exam CSV/Excel files and review upload history</p>
+      </div>
+    </header>
+
+    <main>
+      <!-- Left: Upload form -->
+      <section class="card" aria-labelledby="upload-heading">
+        <div class="section-title">
+          <h2 id="upload-heading">Upload Results</h2>
+          <div class="sub">Choose exam type and file</div>
+        </div>
+
+        <form id="uploadForm" enctype="multipart/form-data" novalidate>
+          <label for="examType">Select Exam Type</label>
+          <select id="examType" name="examType" required aria-required="true">
+            <option value="mid1">Mid-1</option>
+            <option value="mid2">Mid-2</option>
+            <option value="endsem">End Semester</option>
+            <option value="quiz">Quiz / Internal</option>
+          </select>
+
+          <label for="fileInput">Upload CSV / Excel Result File</label>
+          <div class="file-wrap" role="group" aria-label="file upload">
+            <input id="fileInput" name="file" type="file" accept=".csv,.xlsx,.xls" style="flex:1; border:none; padding:0; background:transparent;" aria-required="true" />
+            <div class="file-info" id="fileName">No file chosen</div>
+          </div>
+
+          <div class="row" style="justify-content:space-between;">
+            <div class="note">Accepted: .csv, .xlsx, .xls • Max: 10 MB</div>
+            <button type="submit" id="uploadBtn">Upload Results</button>
+          </div>
+        </form>
+
+        <div style="margin-top:12px" class="note">Tip: Use the End Semester option for final term uploads. Ensure student IDs match your system format.</div>
+      </section>
+
+      <!-- Right: Upload history -->
+      <aside class="card" aria-labelledby="history-heading">
+        <div class="history-title">
+          <h3 id="history-heading">Previous Uploads History</h3>
+          <div class="note" id="historyCount">4 entries</div>
+        </div>
+
+        <div id="historyList" class="history-list" aria-live="polite">
+          <!-- Example items (replace with dynamic data in backend) -->
+          <div class="history-item" data-id="1">
+            <div class="history-left">
+              <div class="exam-chip">ENDSEM</div>
+              <div class="exam-meta">
+                <div class="title">End Semester - CSE, 3rd Year</div>
+                <div class="sub">Uploaded by: Admin</div>
+              </div>
+            </div>
+            <div class="uploaded-time">7/10/2025, 10:17:16 AM</div>
+          </div>
+
+          <div class="history-item" data-id="2">
+            <div class="history-left">
+              <div class="exam-chip">ENDSEM</div>
+              <div class="exam-meta">
+                <div class="title">End Semester - CSE, 3rd Year</div>
+                <div class="sub">Uploaded by: Admin</div>
+              </div>
+            </div>
+            <div class="uploaded-time">7/10/2025, 10:17:15 AM</div>
+          </div>
+
+          <div class="history-item" data-id="3">
+            <div class="history-left">
+              <div class="exam-chip">ENDSEM</div>
+              <div class="exam-meta">
+                <div class="title">End Semester - CSE, 3rd Year</div>
+                <div class="sub">Uploaded by: Admin</div>
+              </div>
+            </div>
+            <div class="uploaded-time">7/10/2025, 10:17:14 AM</div>
+          </div>
+
+          <div class="history-item" data-id="4">
+            <div class="history-left">
+              <div class="exam-chip">ENDSEM</div>
+              <div class="exam-meta">
+                <div class="title">End Semester - CSE, 3rd Year</div>
+                <div class="sub">Uploaded by: Admin</div>
+              </div>
+            </div>
+            <div class="uploaded-time">7/10/2025, 10:17:13 AM</div>
+          </div>
+        </div>
+
+        <div id="emptyState" class="empty" style="display:none; margin-top:12px;">No previous uploads found.</div>
+      </aside>
+    </main>
+  </div>
+
+  <script>
+    // Lightweight interactions: file name preview, form validation, optimistic history add
+    (function(){
+      const fileInput = document.getElementById('fileInput');
+      const fileName = document.getElementById('fileName');
+      const form = document.getElementById('uploadForm');
+      const historyList = document.getElementById('historyList');
+      const historyCount = document.getElementById('historyCount');
+
+      fileInput.addEventListener('change', () => {
+        const f = fileInput.files[0];
+        fileName.textContent = f ? f.name + ' (' + Math.round(f.size/1024) + ' KB)' : 'No file chosen';
+      });
+
+      function updateHistoryCount(){
+        const count = historyList.querySelectorAll('.history-item').length;
+        historyCount.textContent = count + ' ' + (count === 1 ? 'entry' : 'entries');
+      }
+      updateHistoryCount();
+
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const exam = document.getElementById('examType').value;
+        const f = fileInput.files[0];
+        if(!f){
+          alert('Please choose a results file to upload.');
+          return;
+        }
+        // Basic client-side validation
+        const allowed = ['text/csv','application/vnd.ms-excel','application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'];
+        if(!allowed.includes(f.type) && !f.name.match(/\.(csv|xls|xlsx)$/i)){
+          alert('Invalid file type. Use CSV or Excel.');
+          return;
+        }
+        // Create a new history entry optimistically (replace with real upload flow)
+        const now = new Date();
+        const timeStr = now.toLocaleString();
+        const titleMap = { mid1:'Mid-1', mid2:'Mid-2', endsem:'End Semester', quiz:'Quiz' };
+        const examLabel = (titleMap[exam] || exam).toUpperCase();
+        const item = document.createElement('div');
+        item.className = 'history-item';
+        item.innerHTML = `
+          <div class="history-left">
+            <div class="exam-chip">${examLabel}</div>
+            <div class="exam-meta">
+              <div class="title">${titleMap[exam]} - Dept, Year</div>
+              <div class="sub">Uploaded by: You</div>
+            </div>
+          </div>
+          <div class="uploaded-time">${timeStr}</div>
+        `;
+        historyList.prepend(item);
+        updateHistoryCount();
+
+        // reset form UI
+        form.reset();
+        fileName.textContent = 'No file chosen';
+
+        // In real app, you would POST form data to server here and handle success/failure.
+      });
+    })();
+  </script>
+</body>
+</html>

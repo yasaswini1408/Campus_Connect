@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Student - Assignments</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 20px; background: #f4f6f8; }
+    h2 { color: #333; }
+    .assignment {
+      background: white; padding: 15px; margin-bottom: 20px;
+      border-radius: 10px; box-shadow: 0 3px 6px rgba(0,0,0,0.1);
+    }
+    input, button { margin: 10px 0; padding: 8px; width: 100%; }
+    #toast{
+      visibility: hidden;
+      min-width: 250px;
+      margin-left: -125px;
+      background-color: #333;
+      color: #fff;
+      text-align: center;
+      border-radius: 8px;
+      padding: 12px;
+      position: fixed;
+      z-index: 9999;
+      left: 50%;
+      bottom: 30px;
+      font-size: 16px;
+      transition: opacity 0.5s, bottom 0.5s;
+      opacity: 0;
+    }
+  </style>
+</head>
+<body>
+  <h2>📌 Pending Assignments</h2>
+  <div id="pendingAssignments"></div>
+
+  <h2>✅ Finished Assignments</h2>
+  <div id="finishedAssignments"></div>
+
+  <script src="assets/js/student-assignments.js"></script>
+  <div id="toast"></div>
+</body>
+</html>
