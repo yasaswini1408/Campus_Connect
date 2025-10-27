@@ -1,0 +1,303 @@
+
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Official Notices</title>
+    <link rel="icon" href="assets/images/icon.png" />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700;800&display=swap" rel="stylesheet" />
+    <style>
+        :root {
+            /* Restored the original (before-merge) purple color palette */
+            --primary-color: #3b1d92;
+            --secondary-color: #4a3ee0;
+            --general-bg: #f0f0f5;
+            --urgent-bg: #ffe6e6;
+            --event-bg: #e6f7ff;
+            --placement-bg: #f0f9ff;
+            --text-color: #333;
+            --background-color: #f4f6fa;
+            --card-background: #ffffff;
+            --border-color: #dfe6e9;
+            --shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 6px 15px rgba(59, 29, 146, 0.2);
+            --blue: #007bff;
+            --orange: #ff8800;
+            --purple: #6f42c1;
+            --green: #28a745;
+            --teal: #20c997;
+            --gray: #6c757d;
+            --pink: #e83e8c;
+            --red: #e63946;
+        }
+
+        body {
+            font-family: "Segoe UI", Tahoma, sans-serif;
+            background: var(--background-color);
+            padding: 30px 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+            margin: 0;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            color: var(--text-color);
+            font-weight: 800;
+            margin-bottom: 20px;
+            font-size: 1.9rem;
+            border-bottom: 4px solid var(--primary-color);
+            padding-bottom: 8px;
+            text-align: center;
+            animation: fadeInDown 0.6s ease-out;
+        }
+
+        h3 {
+            color: var(--text-color);
+            font-weight: 700;
+            margin-top: 18px;
+            margin-bottom: 10px;
+            font-size: 1.25rem;
+        }
+
+        form {
+            background: var(--card-background);
+            padding: 22px;
+            margin-bottom: 22px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            border-top: 5px solid var(--primary-color);
+        }
+
+        form input,
+        form textarea,
+        form select {
+            display: block;
+            margin: 12px 0;
+            padding: 12px;
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            font-size: 1rem;
+            transition: border-color 0.25s, box-shadow 0.25s;
+        }
+
+        form input:focus,
+        form textarea:focus,
+        form select:focus {
+            border-color: var(--secondary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(74, 62, 224, 0.12);
+        }
+
+        form textarea {
+            resize: vertical;
+            min-height: 100px;
+        }
+
+        form button {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            color: white;
+            border: none;
+            padding: 12px;
+            border-radius: 8px;
+            cursor: pointer;
+            margin-top: 14px;
+            font-size: 1.05rem;
+            font-weight: 700;
+            box-shadow: 0 4px 10px rgba(59, 29, 146, 0.22);
+            transition: background-color 0.2s, transform 0.15s;
+        }
+
+        form button:hover {
+            transform: translateY(-1px);
+            box-shadow: var(--shadow-hover);
+        }
+
+        .notice {
+            padding: 20px;
+            margin-bottom: 14px;
+            border-radius: 10px;
+            background: var(--card-background);
+            box-shadow: var(--shadow);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+            position: relative;
+            overflow: hidden;
+            border-left: 6px solid;
+        }
+
+        .notice:hover {
+            transform: translateX(4px);
+            box-shadow: 0 6px 18px rgba(59, 29, 146, 0.08);
+        }
+
+        .notice h3 {
+            margin: 0 0 8px 0;
+            font-weight: 700;
+            font-size: 1.2rem;
+        }
+
+        .notice-content {
+            color: #555;
+            line-height: 1.7;
+            margin-bottom: 12px;
+        }
+
+        .notice-footer {
+            font-size: 0.9rem;
+            color: #7f8c8d;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .notice-status {
+            font-size: 0.75rem;
+            font-weight: 700;
+            padding: 5px 9px;
+            border-radius: 4px;
+            text-transform: uppercase;
+            color: white;
+        }
+
+        .urgent .notice-status {
+            background: var(--red);
+        }
+
+        .event .notice-status {
+            background: var(--blue);
+        }
+
+        .placement .notice-status {
+            background: var(--teal);
+        }
+
+        .general .notice-status {
+            background: var(--green);
+        }
+
+        /* Category backgrounds and borders */
+        .general {
+            background: var(--general-bg);
+            border-left-color: var(--green);
+        }
+
+        .urgent {
+            background: var(--urgent-bg);
+            border-left-color: var(--red);
+        }
+
+        .event {
+            background: var(--event-bg);
+            border-left-color: var(--blue);
+        }
+
+        .placement {
+            background: var(--placement-bg);
+            border-left-color: var(--teal);
+        }
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+            .notice {
+                padding: 14px;
+            }
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>📌 Notices</h2>
+
+        <form id="noticeForm" style="display:none;">
+            <input type="text" id="title" placeholder="Notice Title (e.g., Exam Postponement)" required />
+            <textarea id="content" placeholder="Write the notice details here..." required></textarea>
+
+            <select id="category">
+                <option value="general">📢 General</option>
+                <option value="urgent">🔴 Urgent</option>
+                <option value="event">🎉 Event</option>
+                <option value="placement">💼 Placement</option>
+            </select>
+
+            <button type="submit">Post Notice</button>
+        </form>
+
+        <div id="notices">
+            <div class="notice urgent">
+                <h3>Semester Break Timetable Update</h3>
+                <div class="notice-content">
+                    Due to unforeseen administrative tasks, the semester break will begin three days later than originally scheduled. Please check the attachment for the revised timetable.
+                </div>
+                <div class="notice-footer">
+                    <small>Posted by Administration on 2025-10-09</small>
+                    <span class="notice-status">URGENT</span>
+                </div>
+            </div>
+
+            <div class="notice placement">
+                <h3>TCS Placement Drive Schedule</h3>
+                <div class="notice-content">
+                    The TCS campus drive first round (Aptitude Test) will be held on Nov 5th. All eligible students must confirm their participation by Oct 20th on the portal.
+                </div>
+                <div class="notice-footer">
+                    <small>Posted by Placement Cell on 2025-10-08</small>
+                    <span class="notice-status">PLACEMENT</span>
+                </div>
+            </div>
+
+            <div class="notice event">
+                <h3>Annual Cultural Fest Registration Open</h3>
+                <div class="notice-content">
+                    Registrations for the Annual Cultural Fest are now open! Sign up for dance, music, drama, and literary events before the deadline.
+                </div>
+                <div class="notice-footer">
+                    <small>Posted by Cultural Committee on 2025-10-05</small>
+                    <span class="notice-status">EVENT</span>
+                </div>
+            </div>
+
+            <div class="notice general">
+                <h3>Library Book Submission Reminder</h3>
+                <div class="notice-content">
+                    All students are reminded to submit their currently issued library books before the semester ends to avoid late fees.
+                </div>
+                <div class="notice-footer">
+                    <small>Posted by Library Staff on 2025-10-01</small>
+                    <span class="notice-status">GENERAL</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="assets/js/notices.js"></script>
+</body>
+</html>

@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Faculty - Mark Attendance</title>
+    <link rel="icon" href="assets/images/icon.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+         :root {
+            --primary-color: #e67e22;
+            --secondary-color: #f1c40f;
+            --success-color: #2ecc71;
+            --text-color: #34495e;
+            --background-color: #fffaf5;
+            --card-background: #ffffff;
+            --border-color: #e0e0e0;
+            --shadow-light: 0 5px 15px rgba(0, 0, 0, 0.05);
+            --shadow-hover: 0 8px 25px rgba(230, 126, 34, 0.2);
+        }
+        
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--background-color);
+            padding: 20px;
+            color: var(--text-color);
+            line-height: 1.6;
+            transition: background-color 0.4s;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        
+        h2 {
+            color: var(--primary-color);
+            font-weight: 600;
+            border-bottom: 3px solid var(--secondary-color);
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+            font-size: 2rem;
+            animation: fadeInDown 0.8s ease-out;
+        }
+        
+        form,
+        .attendance-box {
+            margin-bottom: 30px;
+            background: var(--card-background);
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: var(--shadow-light);
+            border-left: 5px solid var(--primary-color);
+            transition: all 0.4s ease;
+        }
+        
+        form:hover,
+        .attendance-box:hover {
+            box-shadow: var(--shadow-hover);
+            transform: translateY(-3px);
+        }
+        
+        .attendance-box h3 {
+            color: var(--primary-color);
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+            font-weight: 500;
+        }
+        
+        label {
+            display: block;
+            margin: 15px 0 5px;
+            font-weight: 500;
+            color: var(--text-color);
+            font-size: 1.05rem;
+        }
+        
+        select,
+        input:not([type="checkbox"]) {
+            padding: 12px;
+            width: 100%;
+            border: 2px solid var(--border-color);
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-size: 1rem;
+            color: var(--text-color);
+            background-color: #ffffff;
+            transition: border-color 0.3s, box-shadow 0.3s;
+        }
+        
+        select:focus,
+        input:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
+        }
+        
+        button {
+            border: none;
+            padding: 12px 20px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: background-color 0.3s, transform 0.3s, box-shadow 0.3s;
+            letter-spacing: 0.5px;
+        }
+        
+        button[type="submit"]:not(.submit) {
+            background: var(--primary-color);
+            color: white;
+            margin-top: 25px;
+            width: 100%;
+            box-shadow: 0 4px 10px rgba(230, 126, 34, 0.3);
+        }
+        
+        button[type="submit"]:not(.submit):hover {
+            background: #d37420;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(230, 126, 34, 0.4);
+        }
+        
+        button.submit {
+            background: var(--success-color);
+            color: white;
+            padding: 15px;
+            width: 100%;
+            margin-top: 30px;
+            font-size: 1.2rem;
+            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.4);
+        }
+        
+        button.submit:hover {
+            background: #27ae60;
+            transform: scale(1.02);
+            box-shadow: 0 8px 20px rgba(46, 204, 113, 0.5);
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: separate;
+            border-spacing: 0;
+            margin-top: 20px;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+        
+        th,
+        td {
+            padding: 15px;
+            text-align: left;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        th {
+            background: var(--primary-color);
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            text-transform: uppercase;
+            font-size: 0.95rem;
+            letter-spacing: 1px;
+        }
+        
+        tbody tr {
+            background-color: var(--card-background);
+            transition: background-color 0.3s;
+        }
+        
+        tbody tr:nth-child(even) {
+            background-color: #fdfdfd;
+        }
+        
+        tbody tr:hover {
+            background-color: #fff8ee;
+            box-shadow: inset 3px 0 0 0 var(--primary-color);
+        }
+        
+        td:nth-child(1),
+        td:nth-child(3) {
+            text-align: center;
+        }
+        
+        input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            border: 2px solid var(--primary-color);
+            border-radius: 4px;
+            vertical-align: middle;
+            accent-color: var(--primary-color);
+        }
+        
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @media (max-width: 600px) {
+            body {
+                padding: 10px;
+            }
+            form,
+            .attendance-box {
+                padding: 20px;
+            }
+            table,
+            thead,
+            tbody,
+            th,
+            td,
+            tr {
+                display: block;
+            }
+            thead tr {
+                position: absolute;
+                top: -9999px;
+                left: -9999px;
+            }
+            tr {
+                border: 1px solid var(--border-color);
+                margin-bottom: 10px;
+                border-radius: 6px;
+            }
+            td {
+                border: none;
+                position: relative;
+                padding-left: 50%;
+                text-align: right;
+            }
+            td:before {
+                position: absolute;
+                top: 50%;
+                left: 10px;
+                width: 45%;
+                padding-right: 10px;
+                white-space: nowrap;
+                content: attr(data-label);
+                font-weight: 500;
+                text-align: left;
+                transform: translateY(-50%);
+                color: var(--primary-color);
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h2>📋 Mark Attendance</h2>
+
+        <form id="attendanceForm">
+            <label for="date">Date</label>
+            <input type="date" id="date" required>
+
+            <label for="subject">Subject</label>
+            <select id="subject" required>
+                <option value="">-- Select Subject --</option>
+                <option value="DWDM">DWDM (Data Warehousing and Data Mining)</option>
+                <option value="CD">CD (Compiler Design)</option>
+                <option value="DAA">DAA (Design and Analysis of Algorithms)</option>
+                <option value="OOAD">OOAD (Object-Oriented Analysis and Design)</option>
+                <option value="AOR">AOR (Advanced Operating Systems)</option>
+                <option value="DM LAB">DM LAB</option>
+                <option value="ADS LAB">ADS LAB</option>
+                <option value="FSD-II LAB">FSD-II LAB</option>
+                <option value="AADF">AADF (Advanced Application Development Frameworks)</option>
+            </select>
+
+            <label for="periods">Number of Periods</label>
+            <input type="number" id="periods" value="1" min="1" max="3" required>
+
+            <button type="submit">Load Students</button>
+        </form>
+
+        <div id="attendanceSection" class="attendance-box" style="display:none;">
+            <h3>Mark Attendance</h3>
+            <form id="markAttendanceForm">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Reg No</th>
+                            <th>Name</th>
+                            <th>Absent?</th>
+                        </tr>
+                    </thead>
+                    <tbody id="studentsTable">
+                    </tbody>
+                </table>
+                <button type="submit" class="submit">Post Attendance</button>
+            </form>
+        </div>
+    </div>
+
+    <script src="assets/js/facultyAttendance.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>My Resources</title>
+  <link rel="icon" href="assets/images/icon.png">
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: #f7f9fc;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Header Section */
+    .header {
+      background: linear-gradient(135deg, #4c1d95, #3b82f6);
+      color: white;
+      text-align: center;
+      padding: 30px 20px;
+      border-bottom-left-radius: 20px;
+      border-bottom-right-radius: 20px;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    }
+
+    .header img {
+      width: 60px;
+      display: block;
+      margin: 0 auto 10px;
+    }
+
+    .header h2 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    /* Search Section */
+    .search-box {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .search-box input {
+      width: 80%;
+      max-width: 400px;
+      padding: 12px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 16px;
+    }
+
+    .search-box button {
+      display: block;
+      width: 150px;
+      margin: 15px auto 0;
+      background: linear-gradient(135deg, #4c1d95, #3b82f6);
+      color: white;
+      border: none;
+      padding: 12px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    .search-box button:hover {
+      background: linear-gradient(135deg, #3b82f6, #4c1d95);
+    }
+
+    /* Resource Cards */
+    #resources {
+      width: 90%;
+      max-width: 700px;
+      margin: 0 auto;
+    }
+
+    .resource {
+      background: white;
+      padding: 20px;
+      margin-bottom: 20px;
+      border-radius: 12px;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    }
+
+    .resource strong {
+      font-size: 18px;
+      color: #1e3a8a;
+    }
+
+    .resource small {
+      display: block;
+      color: #555;
+      margin-top: 5px;
+    }
+
+    a.download {
+      display: inline-block;
+      margin-top: 10px;
+      color: white;
+      background: linear-gradient(135deg, #4c1d95, #3b82f6);
+      padding: 8px 16px;
+      border-radius: 6px;
+      text-decoration: none;
+      transition: 0.3s;
+    }
+
+    a.download:hover {
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <!-- Header Section -->
+  <div class="header">
+    <img src="assets/images/books.png" alt="Books Icon">
+    <h2>My Resources</h2>
+  </div>
+
+  <!-- Search Section -->
+  <div class="search-box">
+    <input type="text" placeholder="Search by resource title...">
+    <button>Search</button>
+  </div>
+
+  <!-- Resources Section -->
+  <div id="resources">
+    <!-- Example Card -->
+    <div class="resource">
+      <strong>Data Structures Notes</strong>
+      <small>Uploaded by: John Doe</small>
+      <a href="#" class="download">Download</a>
+    </div>
+  </div>
+
+  <script src="assets/js/student-resources.js"></script>
+</body>
+</html>
