@@ -43,7 +43,7 @@ function renderPost(post) {
       • ${new Date(post.date).toLocaleString()} • ${post.type}
     </small>
     <button class="upvote" onclick="upvotePost('${post._id}')">
-      👍 Upvote
+       Upvote &uarr;
     </button>
     <span id="upvotes-${post._id}">${post.upvotes?.length || 0}</span> upvotes
     <div class="replies" id="replies-${post._id}"></div>
@@ -158,3 +158,6 @@ document.getElementById('postForm').addEventListener('submit', async (e) => {
 
 // Load posts initially
 getPosts();
+// setInterval(() => {
+//   location.reload();
+// }, 20000); 

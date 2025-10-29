@@ -5,34 +5,136 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>VIIT - Student Portal</title>
   <link rel="icon" href="assets/images/icon.png">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" integrity="sha512-(replace-with-correct-hash)" crossorigin="anonymous" referrerpolicy="no-referrer" />
   <style>
     body {
       margin: 0;
-      font-family: "Segoe UI", Tahoma, sans-serif;
-      background: #f4f6fa;
-      color: #333;
+      font-family: "Poppins", "Segoe UI", sans-serif;
+      background: linear-gradient(90deg, #fbfbfb, #b1d3ff,#a1c2ed );
+      background-size: 300% 300%;
+      animation: bgShift 8s ease-in-out infinite;
+      color: #fff;
+      min-height: 100vh;
     }
+
+    @keyframes bgShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
     .header {
-      background: linear-gradient(90deg, #3b1d92, #4a3ee0);
+      background: linear-gradient(135deg, rgb(42, 21, 106), rgb(41, 38, 232));
       color: white;
-      padding: 25px;
-      border-radius: 0 0 20px 20px;
+      padding: 25px 40px;
       display: flex;
+      justify-content:space-between;
       align-items: center;
-      gap: 15px;
+      border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+      margin: 10px;
+      border-radius: 25px;
     }
+
     .profile-icon {
-      width: 50px;
-      height: 50px;
+      width: 55px;
+      height: 55px;
       border-radius: 50%;
       background: #fff;
-      color: #3b1d92;
+      color: #2563eb;
       display: flex;
       align-items: center;
       justify-content: center;
       font-weight: bold;
+      font-size: 20px;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+      margin-right: 10px;
+    }
+
+    #logoutBtn {
+      padding: 10px 18px;
+      background: #e63946;
+      border: none;
+      color: white;
+      font-weight: bold;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    #logoutBtn:hover {
+      background: #d62839;
+      transform: scale(1.05);
+    }
+
+    .main {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 60px 40px;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+
+    /* Image Placeholder */
+    .image-placeholder {
+      position: relative;
+      flex: 1;
+      min-width: 300px;
+      height: 420px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 22px;
+      font-weight: 500;
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      overflow: hidden;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .image-placeholder:hover {
+      transform: scale(1.02);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.3);
+    }
+
+    .image-placeholder::after {
+      content: "“Dream big, stay consistent, and the results will follow.”";
+      position: absolute;
+      inset: 0;
+      background: rgba(106, 150, 247, 0.9);
+      color: #fff;
       font-size: 18px;
-      box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+      font-weight: 500;
+      text-align: center;
+      opacity: 0;
+      transition: opacity 0.6s ease;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 30px;
+      border-radius: 20px;
+    }
+
+    .image-placeholder:hover::after {
+      opacity: 1;
+    }
+
+    /* Card Container */
+    .card-container {
+      flex: 1;
+      min-width: 350px;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 20px;
+    }
+
+
+    i{
+      color: black;
     }
     .header-text h1 {
       margin: 0;
@@ -54,22 +156,18 @@
       position: relative;
       overflow: hidden;
       animation: bannerFadeIn 1.5s ease-out;
+      height: 10px;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
     .banner h1 {
-      font-size: 48px;
-      font-weight: 900;
+      font-size: 35px;
+      font-weight: 800;
       margin: 0;
       color: white;
-      text-shadow: 4px 4px 8px rgba(0,0,0,0.9), 0 0 25px rgba(255,255,255,0.8);
-      animation: textGlow 2s ease-in-out infinite alternate;
-    }
-    @keyframes textGlow {
-      from {
-        text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 20px rgba(255,255,255,0.5);
-      }
-      to {
-        text-shadow: 3px 3px 6px rgba(0,0,0,0.8), 0 0 30px rgba(255,255,255,0.8);
-      }
+      /*text-shadow: 4px 4px 8px rgba(0,0,0,0.9), 0 0 25px rgba(255,255,255,0.8);*/
     }
     .banner::before {
       content: '';
@@ -78,13 +176,12 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background: linear-gradient(135deg, rgba(59, 29, 146, 0.4), rgba(74, 62, 224, 0.4));
+      background: linear-gradient(135deg, rgba(42, 21, 106,0.7), rgba(41, 38, 232,0.7));
       border-radius: 15px;
     }
     .banner > * {
       position: relative;
       z-index: 1;
-      text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
     }
     @keyframes bannerFadeIn {
       from {
@@ -98,9 +195,17 @@
     }
     .banner small {
       display: block;
-      margin-top: 10px;
-      font-size: 20px;
+      margin-top: 0;
+      font-size: 17px;
       font-weight: normal;
+    }
+
+    #tagline{
+      color:#ffffff;
+      font-size: 13px;
+      margin: 0;
+      opacity:0.8;
+      margin-top: 2px;
     }
     .card-container {
       display: grid;
@@ -110,31 +215,28 @@
       justify-content: center;
     }
     .card {
-      background: white;
+      background: rgba(255, 255, 255, 0.875);
       border-radius: 15px;
-      padding: 20px;
+      padding: 25px 20px;
       text-align: center;
       box-shadow: 0 3px 8px rgba(0,0,0,0.1);
-      transition: transform 0.2s;
+      transition: all 0.3s ease;
     }
     .card:hover {
-      transform: translateY(-5px);
-      border: 2px solid #007bff;
+      transform: translateY(-6px) scale(1.02);
+      background: rgb(199, 199, 199);
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
     }
+
+
     .icon {
       font-size: 30px;
       margin-bottom: 10px;
     }
-    .blue { color: #007bff; }
-    .orange { color: #ff8800; }
-    .purple { color: #6f42c1; }
-    .green { color: #28a745; }
-    .teal { color: #20c997; }
-    .gray { color: #6c757d; }
-    .pink { color: #e83e8c; }
     .card h3 {
       margin: 5px 0;
       font-size: 16px;
+      color: black;
     }
     .card p {
       margin: 3px 0;
@@ -159,17 +261,7 @@
     .card button:hover {
       background: linear-gradient(90deg, #2a156a, #3a2ab0);
     }
-    #logoutBtn{
-      position: absolute; 
-      top: 50px; 
-      right: 20px; 
-      padding: 8px 14px; 
-      background: #e63946; 
-      color: white; 
-      border: none; 
-      border-radius: 8px; 
-      cursor: pointer;
-    }
+
     @media (max-width: 768px) {
       .card-container {
         grid-template-columns: 1fr;
@@ -183,85 +275,105 @@
 </head>
 <body>
   <div class="header">
-    <div class="profile-icon">😎</div>
+    <div class="profile-icon">S</div>
     <div class="header-text">
       <h1>Welcome back, Aarav Sharma</h1>
-      <p>Roll No: CS202301</p>
-      <p>Computer Science • 3rd Year</p>
+      <p style="text-align:center;">Roll No: CS202301</p>
+      <p style="text-align:center;">Computer Science • 3rd Year</p>
     </div>
     <button id="logoutBtn">Logout</button>
   </div>
   <div class="banner">
     <h1>Campus Connect</h1>
     <small>Your gateway to campus life</small>
+    <p id="tagline">Stay connected • Stay informed • Stay ahead</p>
   </div>
-    <div style="position: absolute; top: 10px; right: 20px;">
-      <button id="notifBtn">🔔 Notifications</button>
-      <div id="notifList" style="display:none; background:white; border:1px solid #ddd; padding:10px; border-radius:6px; max-height:200px; overflow-y:auto;">
+    <div style="position: absolute; top: 15px; right: 30px;">
+      <button id="notifBtn" style="background-color:rgba(255, 255, 255, 0.797); height: 30px; border-radius: 5px; border: none;"><i class="fa-solid fa-bell"></i></button>
+      <div id="notifList" style="display:none; background:rgba(255, 255, 255, 0.558); border:1px solid #ddd; padding:10px; border-radius:6px; max-height:200px; overflow-y:auto;">
     </div>
   </div>
+  <div class="main">
+    <div class="image-placeholder">
+      <img src="assets/images/joke.jpg" 
+       style="width: 100%; height: 100%; object-fit:fill; display: block; margin: auto;">
+    </div>
 
-  <div class="card-container">
-    <div class="card">
-      <div class="icon blue">👤</div>
-      <h3>Profile</h3>
-      <p>View and edit your details</p>
-      <button onclick="window.location.href='#'">Go to Profile</button>
+    <div class="card-container">
+      <div class="card">
+        <div class="icon blue"><i class="fa-solid fa-user-tie"></i></div>
+          <h3>Profile</h3>
+          <p>View and edit your details</p>
+          <button onclick="window.location.href='#'">Go to Profile</button>
+      </div>
+
+      <div class="card">
+        <div class="icon orange"><i class="fa-solid fa-chart-simple"></i></div>
+        <h3>Attendance</h3>
+        <p>Track your classes</p>
+        <button onclick="window.location.href='student-attendance.html'">View Attendance</button>
+      </div>
+      <div class="card">
+      <div class="icon pink"><i class="fa-solid fa-comments"></i></div>
+      <h3>Campus Wall</h3>
+      <p>Common space for all students</p>
+      <button onclick="window.location.href='campuswall.html'">Join Discussion</button>
+      </div>
+      <div class="card">
+        <div class="icon green"><i class="fa-solid fa-bullhorn"></i></div>
+        <h3>Notices</h3>
+        <p>Stay updated with latest news</p>
+        <button onclick="window.location.href='notices.html'">See Updates</button>
+      </div>
     </div>
-    <div class="card">
-      <div class="icon orange">📊</div>
-      <h3>Attendance</h3>
-      <p>Track your classes</p>
-      <button onclick="window.location.href='student-attendance.html'">View Attendance</button>
-    </div>
-    <div class="card">
-      <div class="icon purple">🎓</div>
-      <h3>Result</h3>
-      <p>Check your performance</p>
-      <button onclick="window.location.href='student-results.html'">View Results</button>
-    </div>
-    <div class="card">
-      <div class="icon green">📢</div>
-      <h3>Notices</h3>
-      <p>Stay updated with latest news</p>
-      <button onclick="window.location.href='notices.html'">See Updates</button>
-    </div>
-    <div class="card">
-      <div class="icon teal">📝</div>
+  </div>
+  <div class="main">
+    <div class="card-container">
+      <div class="card">
+        <div class="icon purple"><i class="fa-solid fa-ranking-star"></i></div>
+        <h3>Result</h3>
+        <p>Check your performance</p>
+        <button onclick="window.location.href='student-results.html'">View Results</button>
+      </div>
+      <div class="card">
+      <div class="icon teal"><i class="fa-solid fa-pen-ruler"></i></div>
       <h3>Assignments</h3>
       <p>Submit and check status</p>
       <button onclick="window.location.href='student-assignments.html'">View Assignments</button>
     </div>
     <div class="card">
-      <div class="icon gray">📚</div>
+      <div class="icon gray"><i class="fa-solid fa-paperclip"></i></div>
+      <h3>Materials</h3>
+      <p>Access notes and materials</p>
+      <button onclick="window.location.href='student-resources.html'">See resources</button>
+    </div>
+    
+    <div class="card">
+      <div class="icon gray"><i class="fa-solid fa-circle-question"></i></div>
+      <h3>Ask Doubts</h3>
+      <p>Doubt solving by faculty</p>
+      <button onclick="window.location.href='student-doubts.html'">Post a doubt</button>
+    </div>
+    </div>
+    <div class="image-placeholder">
+      Have to keep something here.
+    </div>
+  </div>
+  <div class="card-container">
+    <div class="card">
+      <div class="icon gray"><i class="fa-solid fa-book"></i></div>
       <h3>Library</h3>
       <p>Access study resources</p>
       <button onclick="window.location.href='library.html'">Open Library</button>
     </div>
     <div class="card">
-      <div class="icon gray">📚</div>
+      <div class="icon gray"><i class="fa-solid fa-users-line"></i></div>
       <h3>Study Groups</h3>
       <p>Collective learning</p>
       <button onclick="window.location.href='study-groups.html'">Study Together!</button>
     </div>
-    <div class="card">
-      <div class="icon gray">❓</div>
-      <h3>Ask Doubts</h3>
-      <p>Doubt solving by faculty</p>
-      <button onclick="window.location.href='student-doubts.html'">Post a doubt</button>
-    </div>
-    <div class="card">
-      <div class="icon gray">Ding-dong!</div>
-      <h3>Materials</h3>
-      <p>Access notes and materials</p>
-      <button onclick="window.location.href='student-resources.html'">See resources</button>
-    </div>
-    <div class="card">
-      <div class="icon pink">💬</div>
-      <h3>Campus Wall</h3>
-      <p>Common space for all students</p>
-      <button onclick="window.location.href='campuswall.html'">Join Discussion</button>
-    </div>
+    
+    
   </div>
   <script>
   // Helper to get token
