@@ -2,221 +2,260 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Upload Resources</title>
-    <link rel="icon" href="assets/images/icon.png">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-    <style>
-         :root {
-            --primary-color: #e67e22;
-            --secondary-color: #2c3e50;
-            --highlight-color: #f1c40f;
-            --text-color: #34495e;
-            --background-color: #fffaf5;
-            --card-background: #ffffff;
-            --border-color: #e0e0e0;
-            --shadow: 0 8px 25px rgba(0, 0, 0, 0.08);
-            --shadow-hover: 0 10px 30px rgba(230, 126, 34, 0.2);
-        }
-        
-        body {
-            font-family: 'Inter', sans-serif;
-            background: var(--background-color);
-            padding: 30px 20px;
-            color: var(--text-color);
-            line-height: 1.6;
-        }
-        
-        .container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-        
-        h2,
-        h3 {
-            color: var(--secondary-color);
-            font-weight: 700;
-            margin-bottom: 25px;
-            border-bottom: 3px solid var(--primary-color);
-            display: inline-block;
-            padding-bottom: 5px;
-            animation: fadeInDown 0.6s ease-out;
-        }
-        
-        form {
-            background: var(--card-background);
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: var(--shadow);
-            max-width: 550px;
-            margin: 0 auto 30px;
-            border-top: 5px solid var(--primary-color);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        form:hover {
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-hover);
-        }
-        
-        label {
-            display: block;
-            margin: 15px 0 5px;
-            font-weight: 600;
-            color: var(--secondary-color);
-            font-size: 0.95rem;
-        }
-        
-        input[type="text"],
-        input[type="file"],
-        select,
-        textarea {
-            width: 100%;
-            padding: 12px 15px;
-            margin: 8px 0;
-            box-sizing: border-box;
-            border: 1px solid var(--border-color);
-            border-radius: 8px;
-            font-size: 1rem;
-            transition: border-color 0.3s, box-shadow 0.3s;
-        }
-        
-        input[type="file"] {
-            border: 2px dashed var(--highlight-color);
-            padding: 15px;
-            background: #fff8ee;
-            cursor: pointer;
-        }
-        
-        input:focus,
-        select:focus,
-        textarea:focus {
-            border-color: var(--primary-color);
-            outline: none;
-            box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
-        }
-        
-        textarea {
-            resize: vertical;
-            min-height: 80px;
-        }
-        
-        .field-group {
-            display: flex;
-            gap: 15px;
-            margin-bottom: 10px;
-        }
-        
-        .field-group>div {
-            flex-grow: 1;
-        }
-        
-        .field-group label {
-            margin-top: 0;
-        }
-        
-        button[type="submit"] {
-            background: var(--primary-color);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 8px;
-            cursor: pointer;
-            margin-top: 25px;
-            font-size: 1.1rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            transition: background-color 0.3s, transform 0.2s, box-shadow 0.3s;
-            box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4);
-        }
-        
-        button[type="submit"]:hover {
-            background: #d37420;
-            transform: scale(1.02);
-            box-shadow: 0 6px 20px rgba(230, 126, 34, 0.5);
-        }
-        
-        #myResources {
-            margin-top: 20px;
-            padding: 15px;
-            background: var(--card-background);
-            border-radius: 10px;
-            box-shadow: var(--shadow);
-            border-left: 5px solid var(--secondary-color);
-        }
-        
-        @keyframes fadeInDown {
-            from {
-                opacity: 0;
-                transform: translateY(-20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-        
-        @media (max-width: 600px) {
-            body {
-                padding: 15px;
-            }
-            form {
-                padding: 20px;
-                border-radius: 12px;
-            }
-            .field-group {
-                flex-direction: column;
-                gap: 0;
-            }
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Upload Resources</title>
+  <link rel="icon" href="assets/images/icon.png" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --primary-color: #e67e22;
+      --secondary-color: #f39c12;
+      --text-color: #2c3e50;
+      --background-color: #fffaf5;
+      --card-background: #ffffff;
+      --border-color: #e0e0e0;
+      --shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+      --shadow-hover: 0 10px 25px rgba(230, 126, 34, 0.25);
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--background-color);
+      margin: 0;
+      color: var(--text-color);
+      line-height: 1.6;
+    }
+
+    /* Sticky Header */
+    header {
+      position: sticky;
+      top: 0;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color: white;
+      padding: 20px 30px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+      z-index: 1000;
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.8rem;
+      font-weight: 700;
+    }
+
+    .container {
+      max-width: 950px;
+      margin: 0 auto;
+      padding: 30px 20px;
+    }
+
+    h2,
+    h3 {
+      color: var(--primary-color);
+      font-weight: 700;
+      margin-bottom: 25px;
+      font-size: 1.7rem;
+      border-left: 6px solid var(--secondary-color);
+      padding-left: 15px;
+      position: relative;
+    }
+
+    h2::after,
+    h3::after {
+      content: "";
+      position: absolute;
+      bottom: -6px;
+      left: 15px;
+      width: 50px;
+      height: 3px;
+      background: var(--primary-color);
+      border-radius: 2px;
+    }
+
+    form {
+      background: var(--card-background);
+      padding: 30px;
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      max-width: 650px;
+      margin: 0 auto 40px;
+      border: 1px solid var(--border-color);
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+
+    form:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow-hover);
+    }
+
+    label {
+      display: block;
+      margin: 15px 0 5px;
+      font-weight: 600;
+      color: var(--text-color);
+      font-size: 0.95rem;
+    }
+
+    input[type="text"],
+    input[type="file"],
+    select,
+    textarea {
+      width: 100%;
+      padding: 12px 15px;
+      margin: 8px 0;
+      box-sizing: border-box;
+      border: 1px solid var(--border-color);
+      border-radius: 10px;
+      font-size: 1rem;
+      transition: border-color 0.3s, box-shadow 0.3s;
+      background: #fffdfb;
+    }
+
+    input[type="file"] {
+      border: 2px dashed var(--primary-color);
+      padding: 18px;
+      background: #fff8ee;
+      cursor: pointer;
+      text-align: center;
+      font-weight: 600;
+      color: var(--primary-color);
+    }
+
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--primary-color);
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(230, 126, 34, 0.2);
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 90px;
+    }
+
+    .field-group {
+      display: flex;
+      gap: 15px;
+      margin-bottom: 10px;
+    }
+
+    .field-group>div {
+      flex-grow: 1;
+    }
+
+    .field-group label {
+      margin-top: 0;
+    }
+
+    button[type="submit"] {
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      color: white;
+      border: none;
+      padding: 14px;
+      border-radius: 10px;
+      cursor: pointer;
+      margin-top: 25px;
+      font-size: 1.1rem;
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      transition: all 0.3s ease;
+      box-shadow: 0 4px 15px rgba(230, 126, 34, 0.4);
+      width: 100%;
+    }
+
+    button[type="submit"]:hover {
+      background: linear-gradient(to right, var(--secondary-color), var(--primary-color));
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(230, 126, 34, 0.5);
+    }
+
+    #myResources {
+      margin-top: 20px;
+      padding: 20px;
+      background: var(--card-background);
+      border-radius: 14px;
+      box-shadow: var(--shadow);
+      border-left: 6px solid var(--primary-color);
+      max-width: 650px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: center;
+    }
+
+    #myResources p {
+      color: #7f8c8d;
+      padding: 10px;
+      font-size: 0.95rem;
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        padding: 15px;
+      }
+
+      form {
+        padding: 20px;
+        border-radius: 12px;
+      }
+
+      .field-group {
+        flex-direction: column;
+        gap: 0;
+      }
+    }
+  </style>
 </head>
 
 <body>
-    <div class="container">
-        <h2>📚 Upload New Resource</h2>
+  <header>
+    <h1>📚 Upload Resources</h1>
+  </header>
 
-        <form id="uploadForm" enctype="multipart/form-data">
-            <input type="text" id="title" name="title" placeholder="Resource Title (e.g., Unit 3 Notes)" required>
-            <textarea id="description" name="description" placeholder="Short Description (e.g., Topics covered, key concepts)"></textarea>
+  <div class="container">
+    <h2>Upload New Resource</h2>
 
-            <input type="text" id="subject" name="subject" placeholder="Subject (e.g., Data Structures)" required>
+    <form id="uploadForm" enctype="multipart/form-data">
+      <input type="text" id="title" name="title" placeholder="Resource Title (e.g., Unit 3 Notes)" required>
+      <textarea id="description" name="description" placeholder="Short Description (e.g., Topics covered, key concepts)"></textarea>
 
-            <div class="field-group">
-                <div>
-                    <label for="year">Year:</label>
-                    <select id="year" name="year" required>
-                        <option value="" disabled selected>Select Year</option>
-                        <option value="1">1st Year</option>
-                        <option value="2">2nd Year</option>
-                        <option value="3">3rd Year</option>
-                        <option value="4">4th Year</option>
-                    </select>
-                </div>
-                <div>
-                    <label for="branch">Branch:</label>
-                    <input type="text" id="branch" name="branch" placeholder="e.g. CSE/IT" required>
-                </div>
-                <div>
-                    <label for="section">Section:</label>
-                    <input type="text" id="section" name="section" placeholder="e.g. A/B" required>
-                </div>
-            </div>
+      <input type="text" id="subject" name="subject" placeholder="Subject (e.g., Data Structures)" required>
 
-            <label for="file">Select File to Upload:</label>
-            <input type="file" id="file" name="file" required>
-
-            <button type="submit">Upload Resource</button>
-        </form>
-
-        <h3 style="max-width: 550px; margin: 30px auto 15px;">Uploaded Resources</h3>
-        <div id="myResources" style="max-width: 550px; margin: 0 auto;">
-            <p style="color:#7f8c8d; text-align: center; padding: 10px;">Your previously uploaded files will appear here.</p>
+      <div class="field-group">
+        <div>
+          <label for="year">Year:</label>
+          <select id="year" name="year" required>
+            <option value="" disabled selected>Select Year</option>
+            <option value="1">1st Year</option>
+            <option value="2">2nd Year</option>
+            <option value="3">3rd Year</option>
+            <option value="4">4th Year</option>
+          </select>
         </div>
-    </div>
+        <div>
+          <label for="branch">Branch:</label>
+          <input type="text" id="branch" name="branch" placeholder="e.g. CSE/IT" required>
+        </div>
+        <div>
+          <label for="section">Section:</label>
+          <input type="text" id="section" name="section" placeholder="e.g. A/B" required>
+        </div>
+      </div>
 
-    <script src="assets/js/faculty-resources.js"></script>
+      <label for="file">Select File to Upload:</label>
+      <input type="file" id="file" name="file" required>
+
+      <button type="submit">Upload Resource</button>
+    </form>
+
+    <h3>Uploaded Resources</h3>
+    <div id="myResources">
+      <p>Your previously uploaded files will appear here.</p>
+    </div>
+  </div>
+
+  <script src="assets/js/faculty-resources.js"></script>
 </body>
 
 </html>
