@@ -83,5 +83,19 @@ router.get('/faculty', auth, async (req, res) => {
   }
 });
 
+// Get current user info
+router.get('/me', auth, async (req, res) => {
+  try {
+    // req.user is set by auth middleware (id & role)
+    const user = await User.findById(req.user.id).select('-password');
+    if (!user) return res.status(404).json({ msg: 'User not found' });
+    res.json(user);
+  } catch (err) {
+    console.error('GET /me error:', err);
+    res.status(500).json({ msg: 'Server error' });
+  }
+});
+
+
 
 module.exports = router;

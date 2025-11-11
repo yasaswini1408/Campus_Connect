@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Profile — Campus Connect</title>
+  <link rel="icon" href="assets/images/icon.png">
+  <style>
+  :root{
+    --primary: #2563eb;
+    --muted: #7287a2;
+    --dark: #2f3e46;
+    --card-bg: #ffffff;
+    --page-bg: #f6f8fb;
+    --soft: #eef3ff;
+    --success: #16a34a;
+  }
+
+  /* Page base */
+  body{
+    margin:0;
+    font-family: Inter, "Poppins", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
+    background: linear-gradient(180deg, #f7f9fc 0%, #f3f6fa 100%);
+    color: var(--dark);
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+
+  .container{
+    max-width: 1100px;
+    margin: 34px auto;
+    padding: 18px;
+    display: flex;
+    gap: 20px;
+    align-items: flex-start;
+  }
+
+  /* Left panel (profile brief + tabs) */
+  .panel{
+    width: 280px;
+    background: linear-gradient(180deg, rgba(255,255,255,0.98), rgba(255,255,255,0.98));
+    border-radius: 14px;
+    padding: 18px;
+    box-shadow: 0 8px 28px rgba(28,35,45,0.06);
+    position: sticky;
+    top: 24px;
+    height: fit-content;
+  }
+
+  .profile-brief{
+    display:flex;
+    gap:12px;
+    align-items:center;
+    margin-bottom: 14px;
+  }
+
+  .avatar{
+    width:64px;
+    height:64px;
+    border-radius:12px;
+    background: linear-gradient(135deg,var(--primary),#3b82f6);
+    color:white;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-weight:700;
+    font-size:22px;
+    box-shadow: 0 6px 18px rgba(37,99,235,0.18);
+  }
+
+  .brief-text h3{ margin:0; font-size:16px; color:var(--dark); }
+  .brief-text p{ margin:4px 0 0; color:var(--muted); font-size:13px; }
+
+  .tabs { margin-top:14px; display:flex; flex-direction:column; gap:8px; }
+  .tab-btn{
+    text-align:left;
+    padding:10px 12px;
+    border-radius:10px;
+    cursor:pointer;
+    border: 1px solid rgba(20,24,32,0.03);
+    background: transparent;
+    color: rgba(20,24,32,0.92);
+    font-weight:600;
+    transition: all .16s ease;
+    box-shadow: none;
+  }
+  .tab-btn:hover{ transform: translateY(-3px); box-shadow: 0 8px 20px rgba(37,99,235,0.05); }
+  .tab-btn.active{
+    background: linear-gradient(90deg,var(--primary),#3b82f6);
+    color: white;
+    box-shadow: 0 10px 30px rgba(37,99,235,0.12);
+  }
+
+  /* Right column content */
+  .content{
+    flex: 1;
+    background: var(--card-bg);
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 12px 40px rgba(28,35,45,0.06);
+    min-height: 420px;
+    overflow: visible;
+  }
+
+  .section-title{ display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom: 12px; }
+  .section-title h2{ margin:0; font-size:18px; color:var(--dark); }
+  .section-sub{ color:var(--muted); font-size:13px; margin-top:6px; }
+
+  /* Make personal details look like display rows (not editable) */
+  .personal-grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px 18px;
+    margin-top: 6px;
+  }
+
+  .info-card{
+    background: linear-gradient(180deg,#fff,#fbfdff);
+    border-radius: 10px;
+    padding: 12px 14px;
+    border: 1px solid #eef3ff;
+    box-shadow: 0 6px 18px rgba(30,40,60,0.04);
+  }
+
+  .info-label{ font-size:13px; color:var(--muted); margin-bottom:6px; }
+  .info-value{ font-size:15px; color:var(--dark); font-weight:600; letter-spacing: .2px; }
+
+  /* If your personal details are still inputs, make them look static */
+  input[readonly], textarea[readonly]{
+    border: none;
+    background: transparent;
+    padding: 0;
+    margin: 0;
+    font-size: 15px;
+    color: var(--dark);
+    font-weight:600;
+    width: 100%;
+    box-shadow: none;
+    cursor: default;
+  }
+
+  /* Buttons row */
+  .actions-row{ margin-top:18px; display:flex; gap:12px; flex-wrap:wrap; }
+  .btn{ background: var(--primary); color:white; padding:10px 14px; border-radius:10px; border:none; cursor:pointer; font-weight:700; letter-spacing:.2px; }
+  .btn.ghost{ background:transparent; color:var(--primary); border:1px solid rgba(37,99,235,0.12); font-weight:600; }
+
+  /* Larger sections: update / suggestion / complaint */
+  .tab-section{
+    margin-top: 6px;
+    padding-top: 6px;
+  }
+
+  .form-card{
+    background: #fff;
+    border-radius: 12px;
+    border: 1px solid #eef3ff;
+    padding: 18px;
+    box-shadow: 0 8px 30px rgba(20,30,60,0.03);
+    min-height: 260px;           /* increase so they don't look stubby */
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .form-row{ display:flex; gap:10px; align-items:center; }
+  .label{ width:180px; color:var(--muted); font-size:14px; }
+  .control{ flex:1; }
+
+  input[type="text"], input[type="password"], input[type="tel"], textarea, select {
+    width: 100%;
+    padding: 12px 10px;
+    border-radius: 10px;
+    border: 1px solid #e6ecff;
+    font-size: 14px;
+    background: #fbfdff;
+    outline: none;
+    transition: box-shadow .14s, border-color .14s;
+  }
+  textarea{ min-height:120px; resize: vertical; }
+
+  input:focus, textarea:focus, select:focus {
+    border-color: var(--primary);
+    box-shadow: 0 6px 24px rgba(37,99,235,0.08);
+  }
+
+  /* Feedback / helper text */
+  .muted{ color:var(--muted); font-size:13px; }
+  .small{ font-size:12px; color:#98a0b2; }
+
+  /* Toast */
+  #toast{
+    position: fixed; right:18px; bottom:18px; background:#111; color:#fff; padding:10px 14px; border-radius:10px; opacity:0; transform: translateY(10px); transition: all .24s ease; z-index: 9999; font-weight:700;
+  }
+  #toast.show{ opacity:1; transform: translateY(0); }
+
+  /* Responsive */
+  @media (max-width: 920px){
+    .container{ padding: 12px; }
+    .panel{ width:100%; position:relative; top:auto; display:flex; justify-content:space-between; align-items:center; padding:12px; }
+    .tabs{ flex-direction:row; gap:8px; overflow:auto; }
+    .tab-btn{ white-space:nowrap; padding:8px 10px; }
+    .content{ min-height: auto; }
+    .personal-grid{ grid-template-columns: 1fr; }
+    .label{ width: 130px; }
+  }
+
+  @media (max-width: 560px){
+    .profile-brief{ gap: 10px; }
+    .avatar{ width:48px; height:48px; font-size:18px; border-radius:10px; }
+    .label{ display:block; width:100%; }
+  }
+</style>
+
+</head>
+<body>
+
+  <div class="container">
+    <!-- LEFT: Tabs / brief -->
+    <aside class="panel" aria-label="profile tabs">
+      <div class="profile-brief">
+        <div class="avatar" id="avatar">S</div>
+        <div class="brief-text">
+          <h3 id="displayName">Student Name</h3>
+          <p id="displayReg">Reg No: ----</p>
+        </div>
+      </div>
+
+      <nav class="tabs" role="tablist" aria-orientation="vertical">
+        <button class="tab-btn active" data-tab="personal">Personal Details</button>
+        <button class="tab-btn" data-tab="update">Update Mobile / Password</button>
+        <button class="tab-btn" data-tab="suggest">Suggestions</button>
+        <button class="tab-btn" data-tab="complaint">Complaints</button>
+      </nav>
+    </aside>
+
+    <!-- RIGHT: content area -->
+    <main class="content">
+      <!-- Personal details -->
+      <section id="personal" class="tab-section">
+        <div class="section-title">
+          <div>
+            <h2>Personal Details</h2>
+            <div class="section-sub">Your basic profile and student metadata</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="label">Full name</div>
+          <div><input type="text" id="nameField" readonly></div>
+        </div>
+
+        <div class="field">
+          <div class="label">Registration No</div>
+          <div><input type="text" id="regField" readonly></div>
+        </div>
+
+        <div class="field">
+          <div class="label">Role</div>
+          <div><input type="text" id="roleField" readonly></div>
+        </div>
+
+        <div class="field">
+          <div class="label">Year / Branch / Section</div>
+          <div><input type="text" id="profileField" readonly placeholder="—"></div>
+        </div>
+
+        <div style="margin-top:18px;">
+          <button class="btn" id="editProfileBtn">Refresh Data</button>
+          <button class="btn ghost" id="logoutFromProfile">Logout</button>
+        </div>
+      </section>
+
+      <!-- Update mobile / password -->
+      <section id="update" class="tab-section" style="display:none;">
+        <div class="section-title">
+          <div>
+            <h2>Update Mobile &amp; Password</h2>
+            <div class="section-sub">Change contact number or password securely</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <div class="label">Mobile number</div>
+          <div><input type="tel" id="mobileInput" placeholder="Enter mobile number"></div>
+        </div>
+
+        <div class="field">
+          <div class="label">New password</div>
+          <div><input type="password" id="newPassword" placeholder="New password (min 6)"></div>
+        </div>
+
+        <div class="field">
+          <div class="label">Confirm password</div>
+          <div><input type="password" id="confirmPassword" placeholder="Confirm new password"></div>
+        </div>
+
+        <div style="margin-top:12px;">
+          <button class="btn" id="saveUpdatesBtn">Save changes</button>
+        </div>
+      </section>
+
+      <!-- Suggestions -->
+      <section id="suggest" class="tab-section" style="display:none;">
+        <div class="section-title">
+          <div>
+            <h2>Suggestions</h2>
+            <div class="section-sub">Share ideas to improve the campus experience</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <div style="width:100%">
+            <textarea id="suggestText" placeholder="Write your suggestion..." ></textarea>
+          </div>
+        </div>
+        <div style="margin-top:12px;">
+          <button class="btn" id="sendSuggestBtn">Submit suggestion</button>
+        </div>
+      </section>
+
+      <!-- Complaints -->
+      <section id="complaint" class="tab-section" style="display:none;">
+        <div class="section-title">
+          <div>
+            <h2>Complaints</h2>
+            <div class="section-sub">Report issues — handled by admin confidentially</div>
+          </div>
+        </div>
+
+        <div class="field">
+          <div style="width:100%">
+            <textarea id="complaintText" placeholder="Describe the issue (include date/time, people involved if any)" ></textarea>
+          </div>
+        </div>
+        <div style="margin-top:12px;">
+          <button class="btn" id="sendComplaintBtn">Submit complaint</button>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <div id="toast" role="status"></div>
+
+  <script src="assets/js/profile.js"></script>
+</body>
+</html>

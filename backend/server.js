@@ -19,6 +19,7 @@ const notificationRoutes = require('./routes/notifications');
 const libraryRoutes = require('./routes/library');
 const studyGroupRoutes = require('./routes/studyGroups');
 const assignmentRoutes = require('./routes/assignments');
+const studentProfilesRoutes = require('./routes/studentprofiles');
 
 
 // Middleware
@@ -38,6 +39,7 @@ app.use('/api/notifications', notificationRoutes);
 app.use('/api/library', libraryRoutes);
 app.use('/api/study-groups', studyGroupRoutes);
 app.use('/api/assignments', assignmentRoutes);
+app.use('/api/studentprofiles', studentProfilesRoutes);
 
 
 // Serve frontend static files
