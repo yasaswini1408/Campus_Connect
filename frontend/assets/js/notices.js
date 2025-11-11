@@ -123,7 +123,6 @@ document.getElementById('noticeForm').addEventListener('submit', async (e) => {
 
 // Load notices on page load
 getNotices();
-<<<<<<< HEAD
 
 const canvas = document.getElementById("particles");
     const ctx = canvas.getContext("2d");
@@ -251,5 +250,3 @@ const canvas = document.getElementById("particles");
       canvas.height = window.innerHeight;
       init();
     });
-=======
->>>>>>> 659307a5db6b3e39f3cab4f305cf6e3a3e1a2436
