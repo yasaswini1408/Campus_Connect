@@ -78,7 +78,7 @@ document.getElementById('addUserForm').addEventListener('submit', async (e) => {
     const data = await res.json();
     alert(data.msg);
     e.target.reset();
-    toggleStudentFields(); // hide extra fields again
+    toggleStudentFields(); 
   } catch (err) {
     console.error(err);
   }
