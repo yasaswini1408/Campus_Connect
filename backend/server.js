@@ -6,6 +6,7 @@ const path = require('path');
 require('dotenv').config();
 require('./cron');
 
+
 const app = express();
 const authRoutes = require('./routes/auth');
 const postRoutes = require('./routes/posts');
@@ -74,15 +75,10 @@ io.on("connection", (socket) => {
   });
 });
 
-http.listen(3000, () => console.log(`Server running on http://localhost:3000`));
-
-
-
-// Connect to MongoDB
 mongoose.connect(process.env.MONGO_URI)
     .then(() => console.log('MongoDB connected'))
     .catch(err => console.log('MongoDB connection error:', err));
 
-// Start server
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => console.log(`Server running on port ${PORT} at http://localhost:${PORT}`));

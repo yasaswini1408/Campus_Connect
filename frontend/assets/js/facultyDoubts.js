@@ -1,3 +1,5 @@
+import { BASE_URL } from "./config.js";
+
 function getToken() {
   return localStorage.getItem('token');
 }
@@ -16,7 +18,7 @@ if (!user || user.role !== 'faculty') {
 // Load assigned doubts
 async function loadDoubts() {
   try {
-    const res = await fetch('http://localhost:3000/api/doubts/assigned', {
+    const res = await fetch(`${BASE_URL}/api/doubts/assigned`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
     const doubts = await res.json();
@@ -53,7 +55,7 @@ async function sendReply(doubtId) {
   }
 
   try {
-    const res = await fetch(`http://localhost:3000/api/doubts/${doubtId}/reply`, {
+    const res = await fetch(`${BASE_URL}/api/doubts/${doubtId}/reply`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -75,3 +77,5 @@ async function sendReply(doubtId) {
 
 // Init
 loadDoubts();
+
+window.sendReply = sendReply;

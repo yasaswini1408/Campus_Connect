@@ -42,7 +42,9 @@
 
 <div class="bokka" onclick="window.location.href='admin-library.html'">Add Books</div>
 
-<script>
+<script type="module">
+import { BASE_URL } from "./config.js";
+
 function toggleStudentFields() {
   const role = document.getElementById('role').value;
   document.getElementById('studentFields').style.display =
@@ -66,7 +68,7 @@ document.getElementById('addUserForm').addEventListener('submit', async (e) => {
   }
 
   try {
-    const res = await fetch('http://localhost:3000/api/admin/add-user', {
+    const res = await fetch(`${BASE_URL}/api/admin/add-user`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',

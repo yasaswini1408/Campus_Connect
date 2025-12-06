@@ -1,10 +1,12 @@
+import { BASE_URL } from "./config.js";
+
 function getToken() {
   return localStorage.getItem('token');
 }
 
 async function loadBooks() {
   try {
-    const res = await fetch("http://localhost:3000/api/library/books", {
+    const res = await fetch(`${BASE_URL}/api/library/books`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
@@ -40,7 +42,7 @@ document.getElementById("addBookForm").addEventListener("submit", async (e) => {
   const isbn = document.getElementById("isbn").value;
 
   try {
-    const res = await fetch("http://localhost:3000/api/library/add", {
+    const res = await fetch(`${BASE_URL}/api/library/add`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

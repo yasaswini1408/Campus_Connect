@@ -1,3 +1,4 @@
+import { BASE_URL } from "./config.js";
 function getToken() {
   return localStorage.getItem('token');
 }
@@ -32,7 +33,7 @@ document.getElementById('attendanceForm').addEventListener('submit', async (e) =
 
   try {
     // Fetch all students
-    const res = await fetch('http://localhost:3000/api/auth/students', {
+    const res = await fetch(`${BASE_URL}/api/auth/students`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
     studentsList = await res.json();
@@ -74,7 +75,7 @@ document.getElementById('markAttendanceForm').addEventListener('submit', async (
 
       // Send one record per period
       for (let i = 0; i < periods; i++) {
-        await fetch('http://localhost:3000/api/attendance', {
+        await fetch(`${BASE_URL}/api/attendance`, {
             method: 'POST',
             headers: {
             'Content-Type': 'application/json',

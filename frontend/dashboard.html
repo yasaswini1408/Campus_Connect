@@ -7,7 +7,6 @@
   <link rel="icon" href="assets/images/icon.png">
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha512-EG4Kz7HNmexWY6yq5XAPWleniW5LYqakC4bHRqONP6UbnMpOR8wXvI8tT8A+5XpiEKOXrR45O5NWB2tS6FhX7Q=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
@@ -519,7 +518,8 @@
     
     
   </div>
-  <script>
+  <script type="module">
+  import {BASE_URL} from "./assets/js/config.js";
   // Helper to get token
   function getToken() {
     return localStorage.getItem('token');
@@ -615,7 +615,7 @@
   // Load notifications
   async function loadNotifications() {
   try {
-    const res = await fetch('http://localhost:3000/api/notifications/my', {
+    const res = await fetch(`${BASE_URL}/api/notifications/my`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
@@ -683,7 +683,7 @@ document.getElementById('notifBtn').addEventListener('click', async () => {
     
     // Mark all as read
     try {
-      await fetch('http://localhost:3000/api/notifications/mark-read', {
+      await fetch(`${BASE_URL}/api/notifications/mark-read`, {
         method: 'PUT',
         headers: { 'Authorization': `Bearer ${getToken()}` }
       });

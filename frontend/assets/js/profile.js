@@ -1,4 +1,6 @@
 // ---------- Utils ----------
+import { BASE_URL } from "./config.js";
+
     const token = localStorage.getItem('token');
     const storedUser = (() => {
       try { return JSON.parse(localStorage.getItem('user')); } catch(e){ return null; }

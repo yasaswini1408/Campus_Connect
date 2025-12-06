@@ -1,10 +1,12 @@
+import { BASE_URL } from "./config.js";
+
 function getToken() {
   return localStorage.getItem('token');
 }
 
 async function loadNotifications() {
   try {
-    const res = await fetch('http://localhost:3000/api/notifications/my', {
+    const res = await fetch(`${BASE_URL}/api/notifications/my`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 

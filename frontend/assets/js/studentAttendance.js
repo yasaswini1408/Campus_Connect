@@ -1,3 +1,5 @@
+import { BASE_URL } from "./config.js";
+
 function getToken() {
   return localStorage.getItem('token');
 }
@@ -15,7 +17,7 @@ if (!user || user.role !== 'student') {
 
 async function loadAttendance() {
   try {
-    const res = await fetch('http://localhost:3000/api/attendance/my', {
+    const res = await fetch(`${BASE_URL}/api/attendance/my`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 

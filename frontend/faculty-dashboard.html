@@ -8,7 +8,6 @@
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap" rel="stylesheet">
   <link rel="stylesheet"
     href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    integrity="sha512-EG4Kz7HNmexWY6yq5XAPWleniW5LYqakC4bHRqONP6UbnMpOR8wXvI8tT8A+5XpiEKOXrR45O5NWB2tS6FhX7Q=="
     crossorigin="anonymous"
     referrerpolicy="no-referrer"
   />
@@ -228,7 +227,7 @@
       <button onclick="window.location.href='faculty-assignments.html'">Allot Assignments</button>
     </div>
   </div>
-  <script>
+  <script type="module">
     const user = JSON.parse(localStorage.getItem('user'));
     if (!user) {
       window.location.href = "login.html";

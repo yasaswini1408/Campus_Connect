@@ -1,3 +1,5 @@
+import { BASE_URL } from "./config.js";
+
 function getToken() {
   return localStorage.getItem('token');
 }
@@ -16,7 +18,7 @@ if (!user || user.role !== 'student') {
 // Load faculty list for dropdown
 async function loadFaculty() {
   try {
-    const res = await fetch('http://localhost:3000/api/auth/faculty', {
+    const res = await fetch(`${BASE_URL}/api/auth/faculty`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
     const faculty = await res.json();
@@ -40,7 +42,7 @@ document.getElementById('doubtForm').addEventListener('submit', async (e) => {
   const facultyId = document.getElementById('faculty').value;
 
   try {
-    const res = await fetch('http://localhost:3000/api/doubts', {
+    const res = await fetch(`${BASE_URL}/api/doubts`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -64,7 +66,7 @@ document.getElementById('doubtForm').addEventListener('submit', async (e) => {
 // Load my doubts
 async function loadMyDoubts() {
   try {
-    const res = await fetch('http://localhost:3000/api/doubts/my', {
+    const res = await fetch(`${BASE_URL}/api/doubts/my`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
     

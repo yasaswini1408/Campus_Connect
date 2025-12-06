@@ -1,3 +1,5 @@
+import { BASE_URL } from "./config.js";
+
 function getToken() {
   return localStorage.getItem('token');
 }
@@ -8,7 +10,7 @@ function getUser() {
 
 async function loadMyResources() {
   try {
-    const res = await fetch('http://localhost:3000/api/resources/mine', {
+    const res = await fetch(`${BASE_URL}/api/resources/mine`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
@@ -34,7 +36,7 @@ async function loadMyResources() {
         <strong>${r.title}</strong> (${r.subject})<br>
         <small>${r.year} Year - ${r.branch} - ${r.section}</small><br>
         <small>Uploaded on: ${new Date(r.date).toLocaleString()}</small><br>
-        <a href="http://localhost:3000${r.filePath}" target="_blank">📥 Download</a>
+        <a href="${BASE_URL}${r.filePath}" target="_blank">📥 Download</a>
       `;
       div.appendChild(el);
     });
@@ -64,7 +66,7 @@ document.getElementById('uploadForm').addEventListener('submit', async (e) => {
   formData.append('file', document.getElementById('file').files[0]);
 
   try {
-    const res = await fetch('http://localhost:3000/api/resources', {
+    const res = await fetch(`${BASE_URL}/api/resources`, {
       method: 'POST',
       headers: { 'Authorization': `Bearer ${getToken()}` },
       body: formData

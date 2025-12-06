@@ -1,3 +1,5 @@
+import { BASE_URL } from "./config.js";
+
 function getToken() {
   return localStorage.getItem('token');
 }
@@ -15,7 +17,7 @@ if (!user || user.role !== 'student') {
 
 async function loadResources() {
   try {
-    const res = await fetch('http://localhost:3000/api/resources/my', {
+    const res = await fetch(`${BASE_URL}/api/resources/my`, {
       headers: { 'Authorization': `Bearer ${getToken()}` }
     });
 
@@ -38,7 +40,7 @@ async function loadResources() {
         <small>${r.year} Year - ${r.branch} - ${r.section}</small>
         <small>Uploaded on: ${new Date(r.date).toLocaleString()}</small>
         <p>${r.description || ''}</p>
-        <a class="download" href="http://localhost:3000${r.filePath}" target="_blank">📥 Download</a>
+        <a class="download" href="${BASE_URL}${r.filePath}" target="_blank">📥 Download</a>
       `;
       div.appendChild(el);
     });
