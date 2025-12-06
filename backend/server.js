@@ -24,11 +24,15 @@ const studentProfilesRoutes = require('./routes/studentprofiles');
 
 
 // Middleware
-const corsOptions = {
-  origin: process.env.ALLOWED_ORIGIN || 'https://campus-connect-frontend-87d4.onrender.com',
-  credentials: true,
-};
-app.use(cors(corsOptions));
+app.use(
+  cors({
+    origin: process.env.ALLOWED_ORIGIN || 'https://campus-connect-frontend-87d4.onrender.com',
+    methods: "GET,POST,PUT,DELETE,OPTIONS",
+    allowedHeaders: "Content-Type,Authorization",
+    credentials: true,
+  })
+);
+
 app.use(bodyParser.json());
 
 // API routes
